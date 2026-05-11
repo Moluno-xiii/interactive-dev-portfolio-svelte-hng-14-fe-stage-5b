@@ -1,17 +1,19 @@
 <script lang="ts">
 	import { profile } from '$lib/data/profile';
+	import { activeSection } from '$lib/stores/activeSection.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 
 	interface NavItem {
 		href: string;
+		id: string;
 		label: string;
 	}
 
 	const items: NavItem[] = [
-		{ href: '/#about', label: 'About' },
-		{ href: '/#work', label: 'Work' },
-		{ href: '/#stack', label: 'Stack' },
-		{ href: '/#contact', label: 'Contact' }
+		{ href: '/#about', id: 'about', label: 'About' },
+		{ href: '/#work', id: 'work', label: 'Work' },
+		{ href: '/#stack', id: 'stack', label: 'Stack' },
+		{ href: '/#contact', id: 'contact', label: 'Contact' }
 	];
 
 	let mobileOpen = $state(false);
@@ -38,12 +40,21 @@
 		<nav class="hidden md:block" aria-label="Primary">
 			<ul class="m-0 flex list-none items-center gap-1 p-0">
 				{#each items as item (item.href)}
+					{@const isActive = activeSection.current === item.id}
 					<li>
 						<a
 							href={item.href}
-							class="inline-flex items-center px-3 py-2 text-[0.92rem] text-soft transition-colors duration-200 hover:text-fg"
+							aria-current={isActive ? 'true' : undefined}
+							class="nav-link relative inline-flex items-center px-3 py-2 text-[0.92rem] transition-colors duration-200 {isActive
+								? 'text-fg'
+								: 'text-soft hover:text-fg'}"
 						>
 							{item.label}
+							<span
+								class="pointer-events-none absolute right-3 bottom-1 left-3 h-px origin-left rounded-full bg-accent transition-transform duration-300 ease-out"
+								style:transform={isActive ? 'scaleX(1)' : 'scaleX(0)'}
+								aria-hidden="true"
+							></span>
 						</a>
 					</li>
 				{/each}

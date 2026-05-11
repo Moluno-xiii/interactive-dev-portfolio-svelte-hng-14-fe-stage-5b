@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
 	import { skills } from '$lib/data/skills';
 	import SectionHeading from './SectionHeading.svelte';
 </script>
 
 <section id="stack" class="section relative border-t border-border" aria-labelledby="stack-title">
-	<div class="container-page">
+	<div class="container-page" use:reveal>
 		<SectionHeading
 			eyebrow="Stack"
 			title="Tools I reach for."

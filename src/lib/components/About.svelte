@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
 	import { profile } from '$lib/data/profile';
 	import SectionHeading from './SectionHeading.svelte';
 
@@ -12,7 +13,7 @@
 </script>
 
 <section id="about" class="section relative" aria-labelledby="about-title">
-	<div class="container-page">
+	<div class="container-page" use:reveal>
 		<SectionHeading
 			eyebrow="About"
 			title="A frontend engineer who treats interaction like a material."

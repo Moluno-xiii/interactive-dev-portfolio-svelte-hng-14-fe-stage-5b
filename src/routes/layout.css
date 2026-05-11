@@ -225,6 +225,60 @@
 		padding-block: var(--section-pad-y);
 		position: relative;
 		z-index: 1;
+		scroll-margin-top: 72px;
+	}
+
+	#hero {
+		scroll-margin-top: 0;
+	}
+
+	/* Scroll-triggered reveal (paired with the `reveal` action) */
+	.reveal {
+		opacity: 0;
+		transform: translateY(1.5rem);
+		transition:
+			opacity 750ms var(--ease-out-expo),
+			transform 750ms var(--ease-out-expo);
+		transition-delay: var(--reveal-delay, 0ms);
+		will-change: opacity, transform;
+	}
+
+	.reveal.is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reveal,
+		.reveal.is-visible {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+	}
+
+	/* Draggable tile states — applied by ProjectGrid */
+	.draggable {
+		cursor: grab;
+		touch-action: manipulation;
+	}
+
+	.draggable.is-dragging {
+		cursor: grabbing;
+		opacity: 0.55;
+		outline: 2px dashed var(--accent);
+		outline-offset: 2px;
+	}
+
+	.draggable.is-target {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	.draggable.is-dragging .drag-handle,
+	.draggable:hover .drag-handle {
+		border-color: var(--accent);
+		color: var(--accent);
 	}
 
 	/* Modern pill button — used everywhere */
