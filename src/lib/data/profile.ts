@@ -1,13 +1,13 @@
 import type { Profile } from '$lib/types';
 
 export const profile: Profile = {
-	name: 'Moluno',
+	name: 'Moluno Progress',
 	title: 'Frontend engineer',
 	tagline: 'I build interactive, performant interfaces on the web.',
 	bio: "I'm a frontend engineer focused on interaction design, motion, and performance. I care about the small things — the way a button presses, the rhythm of a layout, the milliseconds you don't notice. Currently exploring Svelte 5, WebGL, and realtime collaboration.",
 	location: 'Lagos, NG',
 	timezone: 'WAT · UTC+1',
-	email: 'hello@example.com',
+	email: 'molunoprogress@gmail.com',
 	resumeUrl: '/resume.pdf',
 	available: true,
 	now: [

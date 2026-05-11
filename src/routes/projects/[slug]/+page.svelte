@@ -32,7 +32,6 @@
 </svelte:head>
 
 <article class="relative pb-[clamp(4rem,8vw,6rem)]">
-	<!-- Breadcrumb -->
 	<nav
 		class="container-page flex items-center gap-3 py-5 text-[0.85rem] text-muted"
 		aria-label="Breadcrumb"
@@ -59,7 +58,6 @@
 	</nav>
 
 	<div class="container-page pt-[clamp(2rem,5vw,3.5rem)]">
-		<!-- Hero -->
 		<header class="fx-rise mb-12 flex max-w-[58rem] flex-col gap-5" style="--fx-delay: 0ms;">
 			<div class="flex flex-wrap items-center gap-2">
 				<span
@@ -145,12 +143,10 @@
 			</div>
 		</header>
 
-		<!-- Hero visual -->
 		<div class="fx-rise mb-14" style="--fx-delay: 120ms;">
 			<BrowserPreview {project} />
 		</div>
 
-		<!-- Meta strip -->
 		{#if cs}
 			<dl
 				class="mb-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4"
@@ -174,10 +170,8 @@
 			</dl>
 		{/if}
 
-		<!-- Content sections -->
 		<div class="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-16">
 			<div class="flex max-w-[44rem] flex-col gap-14">
-				<!-- Overview -->
 				<section>
 					<div class="mb-5 flex items-center gap-3">
 						<span class="mono text-[0.7rem] tracking-wider text-accent uppercase">Overview</span>
@@ -188,7 +182,6 @@
 					</p>
 				</section>
 
-				<!-- Highlights -->
 				{#if cs?.highlights?.length}
 					<section>
 						<div class="mb-5 flex items-center gap-3">
@@ -217,7 +210,6 @@
 					</section>
 				{/if}
 
-				<!-- Process sections -->
 				{#if cs?.sections?.length}
 					<section>
 						<div class="mb-5 flex items-center gap-3">
@@ -247,7 +239,6 @@
 					</section>
 				{/if}
 
-				<!-- Outcomes -->
 				{#if cs?.outcomes?.length}
 					<section>
 						<div class="mb-5 flex items-center gap-3">
@@ -283,7 +274,6 @@
 					</section>
 				{/if}
 
-				<!-- Reflection -->
 				{#if cs?.reflection}
 					<section>
 						<div class="mb-5 flex items-center gap-3">
@@ -300,7 +290,6 @@
 				{/if}
 			</div>
 
-			<!-- Sticky stack rail (desktop only) -->
 			<aside class="lg:sticky lg:top-24 lg:self-start">
 				<div class="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-5">
 					<div class="flex items-center justify-between">
@@ -372,7 +361,6 @@
 			</aside>
 		</div>
 
-		<!-- Prev / Next navigation -->
 		{#if adjacent.prev || adjacent.next}
 			<nav
 				class="mt-20 grid grid-cols-1 gap-3 border-t border-border pt-10 md:grid-cols-2"

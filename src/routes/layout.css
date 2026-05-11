@@ -4,7 +4,6 @@
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 :root {
-	/* Light mode */
 	--bg: #fafafa;
 	--surface: #ffffff;
 	--surface-2: #f4f4f5;
@@ -48,7 +47,6 @@
 	--ring: #a5f261;
 }
 
-/* Tokens exposed to Tailwind */
 @theme inline {
 	--color-bg: var(--bg);
 	--color-surface: var(--surface);
@@ -71,7 +69,6 @@
 	--ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Display type bundles — Bricolage with the optical-size axis tuned for headline use */
 @utility text-hero {
 	font-family: var(--font-display);
 	font-size: clamp(2.75rem, 9vw, 7.5rem);
@@ -159,7 +156,6 @@
 			color 320ms ease;
 	}
 
-	/* Very faint background grain — only in dark, very subtle */
 	[data-theme='dark'] body::before {
 		content: '';
 		position: fixed;
@@ -232,7 +228,6 @@
 		scroll-margin-top: 0;
 	}
 
-	/* Scroll-triggered reveal (paired with the `reveal` action) */
 	.reveal {
 		opacity: 0;
 		transform: translateY(1.5rem);
@@ -257,7 +252,6 @@
 		}
 	}
 
-	/* Draggable tile states — applied by ProjectGrid */
 	.draggable {
 		cursor: grab;
 		touch-action: manipulation;
@@ -281,7 +275,6 @@
 		color: var(--accent);
 	}
 
-	/* Modern pill button — used everywhere */
 	.btn {
 		display: inline-flex;
 		align-items: center;
@@ -389,7 +382,6 @@
 		transform: translateY(0);
 	}
 
-	/* Live pulse — used for "available for work" status */
 	@keyframes pulse-ring {
 		0% {
 			box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
@@ -411,7 +403,6 @@
 		animation: pulse-ring 2.4s ease-out infinite;
 	}
 
-	/* Page-load reveal — single orchestrated stagger */
 	@keyframes rise {
 		from {
 			opacity: 0;

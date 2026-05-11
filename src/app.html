@@ -35,7 +35,7 @@
 								: 'dark';
 					document.documentElement.setAttribute('data-theme', theme);
 				} catch (e) {
-					/* localStorage blocked */
+					void e;
 				}
 			})();
 		</script>

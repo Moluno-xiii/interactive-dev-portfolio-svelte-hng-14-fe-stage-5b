@@ -22,7 +22,6 @@
 		/>
 
 		<div class="grid grid-cols-1 gap-6 md:grid-cols-[1.6fr_1fr] md:gap-8">
-			<!-- Long-form bio: split into paragraphs for breathing room -->
 			<div class="flex flex-col gap-5 text-[clamp(1.05rem,1.2vw,1.15rem)] leading-[1.6] text-soft">
 				<p class="m-0">
 					I trained as a self-taught engineer and have spent the last five years shipping interfaces
@@ -75,7 +74,6 @@
 				</div>
 			</div>
 
-			<!-- Now panel — the standout "currently" block -->
 			<aside class="rounded-2xl border border-border bg-surface p-1.5">
 				<div class="flex items-center justify-between rounded-xl bg-surface-2 px-4 py-3">
 					<span class="mono text-[0.7rem] tracking-wider text-muted uppercase">Currently</span>

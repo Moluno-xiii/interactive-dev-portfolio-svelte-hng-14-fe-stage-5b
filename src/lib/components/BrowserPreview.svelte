@@ -26,7 +26,6 @@
 </script>
 
 <figure class="m-0 overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
-	<!-- Browser chrome -->
 	<div class="flex items-center gap-3 border-b border-border bg-surface-2 px-4 py-3">
 		<div class="flex items-center gap-1.5" aria-hidden="true">
 			<span class="size-3 rounded-full bg-[#ff5f57]"></span>
@@ -93,15 +92,11 @@
 		{/if}
 	</div>
 
-	<!-- Viewport -->
 	<div class="viewport relative aspect-[16/9] overflow-hidden bg-bg">
-		<!-- Dot grid backdrop -->
 		<div class="dot-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
 
-		<!-- Faint horizon lines (decoration) -->
 		<div class="horizon-lines pointer-events-none absolute inset-0" aria-hidden="true"></div>
 
-		<!-- "App nav bar" sliver at top -->
 		<div
 			class="absolute inset-x-0 top-0 flex items-center justify-between border-b border-border/60 px-5 py-3 text-[0.65rem]"
 		>
@@ -119,7 +114,6 @@
 			</div>
 		</div>
 
-		<!-- Centered poster: monogram + project text -->
 		<div class="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
 			<span
 				class="font-display leading-[0.85] font-medium tracking-[-0.05em] text-accent"
@@ -141,14 +135,12 @@
 			</div>
 		</div>
 
-		<!-- Bottom-right meta corner -->
 		<div class="absolute right-5 bottom-4 flex items-center gap-2 text-[0.62rem]">
 			<span class="mono text-muted">{project.year}</span>
 			<span class="mono text-muted-2">/</span>
 			<span class="mono text-accent">{project.caseStudy?.role.split(' ')[0] ?? 'Solo'}</span>
 		</div>
 
-		<!-- Bottom-left "tab bar" hint -->
 		<div class="absolute bottom-4 left-5 flex items-center gap-2 text-[0.62rem]">
 			<span class="inline-block size-1.5 rounded-full bg-accent"></span>
 			<span class="mono text-soft">Preview</span>
@@ -170,7 +162,6 @@
 		opacity: 0.6;
 	}
 
-	/* Dot grid — same pattern as the home work tiles but tuned to the larger surface */
 	.dot-grid {
 		background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
 		background-size: 22px 22px;
@@ -179,7 +170,6 @@
 		-webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
 	}
 
-	/* Faint horizon — 3 slim lines that sit behind the monogram and read like a chart grid */
 	.horizon-lines {
 		background-image:
 			linear-gradient(

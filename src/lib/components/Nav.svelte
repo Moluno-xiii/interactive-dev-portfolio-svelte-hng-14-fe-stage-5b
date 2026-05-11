@@ -134,7 +134,6 @@
 </header>
 
 <style>
-	/* Frosted backdrop — Tailwind has backdrop-blur but not the saturation knob */
 	.masthead {
 		background: color-mix(in srgb, var(--bg) 80%, transparent);
 		backdrop-filter: saturate(180%) blur(14px);

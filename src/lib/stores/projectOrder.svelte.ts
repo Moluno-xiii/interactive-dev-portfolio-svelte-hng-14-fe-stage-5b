@@ -12,7 +12,6 @@ function loadOrder(): string[] {
 		if (!raw) return defaultSlugs();
 		const arr = JSON.parse(raw);
 		if (!Array.isArray(arr)) return defaultSlugs();
-		// Validate: only keep slugs that still exist, append any missing ones at the end
 		const known = new Set(projects.map((p) => p.slug));
 		const valid = arr.filter((s): s is string => typeof s === 'string' && known.has(s));
 		const missing = defaultSlugs().filter((s) => !valid.includes(s));
@@ -49,8 +48,8 @@ class ProjectOrder {
 		if (!browser) return;
 		try {
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(this.slugs));
-		} catch {
-			/* storage blocked */
+		} catch (err) {
+			void err;
 		}
 	}
 }

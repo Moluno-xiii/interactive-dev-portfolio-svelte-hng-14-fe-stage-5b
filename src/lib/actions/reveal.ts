@@ -7,11 +7,6 @@ interface RevealOptions {
 	once?: boolean;
 }
 
-/**
- * Adds `is-visible` to the node when it scrolls into the viewport.
- * Pair with `.reveal { ... }` in layout.css for the entrance animation.
- * Honors `prefers-reduced-motion` — reduced users see the element immediately.
- */
 export const reveal: Action<HTMLElement, RevealOptions | undefined> = (node, options = {}) => {
 	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	if (reduced) {

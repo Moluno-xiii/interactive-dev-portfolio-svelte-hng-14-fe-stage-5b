@@ -8,7 +8,6 @@
 	let draggingIndex = $state<number | null>(null);
 	let overIndex = $state<number | null>(null);
 
-	// 1×1 transparent image used to hide the browser's default drag ghost so our CSS state shows instead
 	const transparentDragImg =
 		'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>';
 
@@ -30,8 +29,8 @@
 		img.src = transparentDragImg;
 		try {
 			e.dataTransfer.setDragImage(img, 0, 0);
-		} catch {
-			/* some browsers throw on synthetic images — ignore */
+		} catch (err) {
+			void err;
 		}
 	}
 
@@ -135,23 +134,20 @@
 				>
 					<a
 						href="/projects/{project.slug}"
-						class="flex flex-1 flex-col cursor-[inherit]"
+						class="flex flex-1 cursor-[inherit] flex-col"
 						aria-label="Read the case study for {project.title}"
 						draggable={false}
 					>
-						<!-- Visual tile -->
 						<div
 							class="card-visual relative aspect-[16/10] overflow-hidden border-b border-border bg-surface-2"
 						>
 							<div class="card-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
 
-							<!-- Top row: number / drag handle / year/featured -->
 							<div
 								class="absolute inset-x-4 top-4 flex items-center justify-between text-[0.65rem] tracking-wider text-muted uppercase"
 							>
 								<span class="mono tabular">{String(i + 1).padStart(2, '0')}</span>
 
-								<!-- Drag handle — always visible, brightens on hover/drag -->
 								<span
 									class="drag-handle inline-flex items-center gap-1.5 rounded-full border border-border bg-bg/85 px-2 py-1 text-[0.58rem] font-medium tracking-wider text-soft uppercase transition-all duration-200 group-hover:border-accent group-hover:text-accent"
 									title="Drag to reorder"

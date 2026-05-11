@@ -17,11 +17,37 @@
 
 <section
 	id="hero"
-	class="relative pt-[clamp(3rem,7vw,5rem)] pb-[clamp(4rem,8vw,6rem)]"
+	class="relative overflow-hidden pt-[clamp(3rem,7vw,5rem)] pb-[clamp(4rem,8vw,6rem)]"
 	aria-labelledby="hero-title"
 >
-	<div class="container-page">
-		<!-- Status row -->
+	<div class="hero-bg" aria-hidden="true">
+		<div class="hero-grid"></div>
+		<div class="hero-stars">
+			<span class="star" style="--x: 12%; --y: 22%; --d: 0s; --dur: 21s;"></span>
+			<span class="star" style="--x: 78%; --y: 15%; --d: -3s; --dur: 28s;"></span>
+			<span class="star" style="--x: 35%; --y: 65%; --d: -6s; --dur: 24s;"></span>
+			<span class="star" style="--x: 62%; --y: 40%; --d: -9s; --dur: 32s;"></span>
+			<span class="star" style="--x: 88%; --y: 72%; --d: -12s; --dur: 26s;"></span>
+			<span class="star" style="--x: 22%; --y: 88%; --d: -15s; --dur: 30s;"></span>
+			<span
+				class="star star-large star-pulse"
+				style="--x: 48%; --y: 28%; --d: -2s; --dur: 36s; --pulse-d: 0s;"
+			></span>
+			<span
+				class="star star-large star-pulse"
+				style="--x: 8%; --y: 55%; --d: -18s; --dur: 34s; --pulse-d: -2.4s;"
+			></span>
+		</div>
+		<div class="hud-frame">
+			<span class="hud hud-tl" style="--hud-d: 0s;"></span>
+			<span class="hud hud-tr" style="--hud-d: -1.2s;"></span>
+			<span class="hud hud-bl" style="--hud-d: -2.4s;"></span>
+			<span class="hud hud-br" style="--hud-d: -3.6s;"></span>
+		</div>
+		<div class="hero-fade"></div>
+	</div>
+
+	<div class="container-page relative">
 		<div
 			class="fx-rise mb-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.78rem] text-muted"
 			style="--fx-delay: 0ms;"
@@ -117,7 +143,6 @@
 				</div>
 			</div>
 
-			<!-- Avatar card — modern, simple. Big initials in accent on a card with a faint dot grid. -->
 			<aside
 				class="fx-rise relative w-full max-w-[20rem] justify-self-start overflow-hidden rounded-2xl border border-border bg-surface p-5 lg:justify-self-end"
 				style="--fx-delay: 620ms;"
@@ -168,5 +193,208 @@
 	.avatar-grid {
 		background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
 		background-size: 14px 14px;
+	}
+
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.hero-grid {
+		position: absolute;
+		inset: -10%;
+		background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
+		background-size: 28px 28px;
+		opacity: 0.55;
+		mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, black 40%, transparent 95%);
+		-webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, black 40%, transparent 95%);
+		animation: gridPan 32s linear infinite;
+	}
+
+	@keyframes gridPan {
+		from {
+			background-position: 0 0;
+		}
+		to {
+			background-position: 56px 56px;
+		}
+	}
+
+	.hero-stars {
+		position: absolute;
+		inset: 0;
+	}
+
+	.star {
+		position: absolute;
+		left: var(--x);
+		top: var(--y);
+		width: 3px;
+		height: 3px;
+		border-radius: 50%;
+		background: var(--accent);
+		box-shadow:
+			0 0 6px color-mix(in srgb, var(--accent) 70%, transparent),
+			0 0 12px color-mix(in srgb, var(--accent) 35%, transparent);
+		opacity: 0;
+		animation:
+			starDrift var(--dur, 24s) ease-in-out var(--d, 0s) infinite,
+			starTwinkle 5s ease-in-out var(--d, 0s) infinite;
+	}
+
+	.star-large {
+		width: 5px;
+		height: 5px;
+		box-shadow:
+			0 0 10px color-mix(in srgb, var(--accent) 80%, transparent),
+			0 0 24px color-mix(in srgb, var(--accent) 30%, transparent);
+	}
+
+	@keyframes starDrift {
+		0%,
+		100% {
+			transform: translate(0, 0);
+		}
+		25% {
+			transform: translate(28px, -16px);
+		}
+		50% {
+			transform: translate(-22px, 36px);
+		}
+		75% {
+			transform: translate(18px, -28px);
+		}
+	}
+
+	@keyframes starTwinkle {
+		0%,
+		100% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 0.85;
+		}
+	}
+
+	.star-pulse::before,
+	.star-pulse::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		border: 1px solid var(--accent);
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(1);
+		animation: pulseRing 5.4s cubic-bezier(0.2, 0.6, 0.2, 1) infinite;
+		animation-delay: var(--pulse-d, 0s);
+	}
+
+	.star-pulse::after {
+		animation-delay: calc(var(--pulse-d, 0s) + 2.7s);
+	}
+
+	@keyframes pulseRing {
+		0% {
+			opacity: 0.55;
+			transform: translate(-50%, -50%) scale(1);
+		}
+		70% {
+			opacity: 0.12;
+		}
+		100% {
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(14);
+		}
+	}
+
+	.hud-frame {
+		position: absolute;
+		inset: 0;
+	}
+
+	.hud {
+		position: absolute;
+		width: 28px;
+		height: 28px;
+		border-color: var(--accent);
+		border-style: solid;
+		border-width: 0;
+		opacity: 0.35;
+		animation: hudPulse 4.8s ease-in-out infinite;
+		animation-delay: var(--hud-d, 0s);
+	}
+
+	.hud-tl {
+		top: 20px;
+		left: 20px;
+		border-top-width: 1.5px;
+		border-left-width: 1.5px;
+	}
+
+	.hud-tr {
+		top: 20px;
+		right: 20px;
+		border-top-width: 1.5px;
+		border-right-width: 1.5px;
+	}
+
+	.hud-bl {
+		bottom: 20px;
+		left: 20px;
+		border-bottom-width: 1.5px;
+		border-left-width: 1.5px;
+	}
+
+	.hud-br {
+		bottom: 20px;
+		right: 20px;
+		border-bottom-width: 1.5px;
+		border-right-width: 1.5px;
+	}
+
+	@keyframes hudPulse {
+		0%,
+		100% {
+			opacity: 0.28;
+			transform: scale(1);
+		}
+		50% {
+			opacity: 0.85;
+			transform: scale(1.08);
+		}
+	}
+
+	.hero-fade {
+		position: absolute;
+		inset: auto 0 0 0;
+		height: 35%;
+		background: linear-gradient(to bottom, transparent, var(--bg));
+		pointer-events: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-grid,
+		.star,
+		.star-pulse::before,
+		.star-pulse::after,
+		.hud {
+			animation: none;
+		}
+		.star {
+			opacity: 0.55;
+		}
+		.star-pulse::before,
+		.star-pulse::after {
+			display: none;
+		}
+		.hud {
+			opacity: 0.5;
+		}
 	}
 </style>
