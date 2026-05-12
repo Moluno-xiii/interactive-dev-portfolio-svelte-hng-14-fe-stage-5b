@@ -11,9 +11,9 @@
 	onMount(() => {
 		const t = setTimeout(() => (show = true), 50);
 		const tick = () => {
-			const d = new Date();
+			const d = new Date(Date.now() + 60 * 60 * 1000);
 			const pad = (n: number) => String(n).padStart(2, '0');
-			time = `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())} UTC`;
+			time = `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())} WAT`;
 		};
 		tick();
 		const id = setInterval(tick, 1000);
@@ -24,6 +24,12 @@
 	});
 
 	const tickerLoop = [...ticker, ...ticker, ...ticker];
+
+	const currentQuarter = (() => {
+		const d = new Date();
+		const q = Math.floor(d.getMonth() / 3) + 1;
+		return `Q${q} ${d.getFullYear()}`;
+	})();
 </script>
 
 <section id="hero" class="hero relative" aria-labelledby="hero-title">
@@ -33,7 +39,7 @@
 		<div class="meta fade-up {show ? 'show' : ''}" style="transition-delay: 0ms;">
 			<span class="pill">
 				<span class="dot"></span>
-				Available · Q3 2026
+				Available · {currentQuarter}
 			</span>
 			<span>{profile.location}</span>
 			<span class="mono">{time}</span>

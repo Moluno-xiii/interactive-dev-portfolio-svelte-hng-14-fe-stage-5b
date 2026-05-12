@@ -7,13 +7,17 @@
 	}
 	let { density = 1, mouse = true }: Props = $props();
 
-	let canvas: HTMLCanvasElement;
+	let canvas = $state<HTMLCanvasElement | undefined>();
+	let coarse = $state(false);
 	let raf = 0;
 	let resizeHandler: () => void;
 	let mouseHandler: (e: MouseEvent) => void;
 
 	onMount(() => {
-		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		coarse = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 720;
+
+		if (coarse || !canvas) return;
+
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return;
 
@@ -35,6 +39,7 @@
 		let mouseY = -9999;
 
 		const resize = () => {
+			if (!canvas) return;
 			W = canvas.clientWidth;
 			H = canvas.clientHeight;
 			canvas.width = W * DPR;
@@ -110,11 +115,7 @@
 		};
 
 		resize();
-		if (reduced) {
-			draw();
-		} else {
-			draw();
-		}
+		draw();
 		window.addEventListener('resize', resize);
 		window.addEventListener('mousemove', onMouse);
 		resizeHandler = resize;
@@ -128,4 +129,29 @@
 	});
 </script>
 
-<canvas bind:this={canvas} class="bg-canvas"></canvas>
+{#if coarse}
+	<div class="bg-canvas particle-static" aria-hidden="true"></div>
+{:else}
+	<canvas bind:this={canvas} class="bg-canvas"></canvas>
+{/if}
+
+<style>
+	.particle-static {
+		background-image:
+			radial-gradient(
+				circle at 1px 1px,
+				color-mix(in srgb, var(--accent) 45%, transparent) 1px,
+				transparent 0
+			),
+			radial-gradient(circle at 1px 1px, rgba(var(--particle-rgb), 0.32) 1px, transparent 0);
+		background-size:
+			80px 80px,
+			40px 40px;
+		background-position:
+			0 0,
+			20px 20px;
+		opacity: 0.4;
+		mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 80%);
+		-webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 80%);
+	}
+</style>

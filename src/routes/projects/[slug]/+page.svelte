@@ -44,7 +44,6 @@
 <div class="proj-shell">
 	<div class="proj-rail"><i bind:this={railEl}></i></div>
 
-	<!-- Floating prev/next side-nav -->
 	{#if adjacent.prev && adjacent.next}
 		<div class="proj-side left">
 			<a href="/projects/{adjacent.prev.slug}" aria-label="Previous: {adjacent.prev.title}">
@@ -166,7 +165,6 @@
 		</div>
 	</section>
 
-	<!-- Prev / Next paddle -->
 	{#if adjacent.prev && adjacent.next}
 		<nav class="proj-nav" aria-label="Project navigation">
 			<a class="prev" href="/projects/{adjacent.prev.slug}">
@@ -202,7 +200,7 @@
 			</a>
 		</div>
 		<footer class="foot mono">
-			<div>© {new Date().getFullYear()} · Moluno · Crafted in Lagos</div>
+			<div>© {new Date().getFullYear()} · Moluno · Powered by sapa</div>
 			<div>v2.04.026 · 60Hz · 6.5244 N · 3.3792 E</div>
 		</footer>
 	</section>

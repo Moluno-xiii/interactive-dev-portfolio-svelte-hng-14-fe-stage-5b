@@ -1,7 +1,20 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { theme, type Palette } from '$lib/stores/theme.svelte';
 
 	let open = $state(false);
+	let coarse = $state(false);
+
+	$effect(() => {
+		if (!browser) return;
+		const mq = window.matchMedia('(pointer: coarse)');
+		coarse = mq.matches;
+		const handler = (e: MediaQueryListEvent) => {
+			coarse = e.matches;
+		};
+		mq.addEventListener('change', handler);
+		return () => mq.removeEventListener('change', handler);
+	});
 
 	const palettes: { value: Palette; label: string; swatch: string }[] = [
 		{ value: 'ice', label: 'Ice', swatch: '#e6eefb' },
@@ -59,17 +72,19 @@
 				</div>
 			</div>
 
-			<div class="twk-section">
-				<div class="twk-label mono">Feel</div>
-				<button
-					class="twk-toggle-row mono"
-					onclick={() => theme.setCursor(!theme.cursor)}
-					aria-pressed={theme.cursor}
-				>
-					<span>Custom cursor</span>
-					<span class="twk-pill" class:on={theme.cursor}>{theme.cursor ? 'On' : 'Off'}</span>
-				</button>
-			</div>
+			{#if !coarse}
+				<div class="twk-section">
+					<div class="twk-label mono">Feel</div>
+					<button
+						class="twk-toggle-row mono"
+						onclick={() => theme.setCursor(!theme.cursor)}
+						aria-pressed={theme.cursor}
+					>
+						<span>Custom cursor</span>
+						<span class="twk-pill" class:on={theme.cursor}>{theme.cursor ? 'On' : 'Off'}</span>
+					</button>
+				</div>
+			{/if}
 		</div>
 	{/if}
 </div>

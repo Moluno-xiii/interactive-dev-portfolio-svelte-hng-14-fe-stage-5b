@@ -41,7 +41,9 @@
 		</div>
 	</div>
 	<footer class="foot mono">
-		<div>© {new Date().getFullYear()} · {profile.name} · Crafted in Lagos</div>
+		<div>
+			© {new Date().getFullYear()} · {profile.name} · Powered by sapa
+		</div>
 		<div>v2.04.026 · 60Hz · 6.5244 N · 3.3792 E</div>
 	</footer>
 </section>
