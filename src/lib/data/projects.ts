@@ -4,211 +4,219 @@ export const projects: Project[] = [
 	{
 		n: '01',
 		year: '2026',
-		slug: 'halcyon',
-		title: 'Halcyon',
-		ital: 'OS',
-		tags: ['Spatial · Vision OS', 'Motion system', 'Lead designer'],
-		desc: 'A spatial workspace shell for designers — ambient panels, gaze-anchored toolbars, and a motion grammar inspired by film editorial.',
-		client: 'Stealth lab',
-		role: 'Founding designer · motion system',
-		duration: '08 / 2024 — present',
-		stack: ['SwiftUI', 'RealityKit', 'Figma', 'Rive'],
+		slug: 'vela',
+		title: 'Vela',
+		ital: 'Dashboard',
+		tags: ['SvelteKit · TS', 'Postgres', 'Lead engineer'],
+		desc: 'A project-management dashboard for small product teams. SvelteKit on top, Drizzle + Postgres underneath, all TypeScript across the seam.',
+		client: 'Stealth SaaS',
+		role: 'Lead frontend · API design',
+		duration: '06 / 2025 — present',
+		stack: ['SvelteKit', 'TypeScript', 'Drizzle', 'Postgres', 'Tailwind'],
 		summary:
-			"Halcyon is a spatial workspace shell for designers — a soft-edged operating layer that re-thinks toolbars, panels and file flow for the post-window era. The brief was to design an OS that disappears: surfaces that bloom into view when you look, recede when you don't, and never demand chrome you weren't asking for.",
+			'Vela is a project-management dashboard built for small product teams who outgrew the spreadsheet but bounced off the heavyweight tools. The brief was a sharp one: fast, typed end-to-end, and never make a user wait for a page they have already seen.',
 		featured: true,
-		liveUrl: 'https://example.com/halcyon',
-		repoUrl: 'https://github.com/Moluno/halcyon',
+		liveUrl: 'https://example.com/vela',
+		repoUrl: 'https://github.com/Moluno/vela',
 		bodySections: [
 			{
 				kind: 'stat-row',
 				items: [
-					['96', 'ms gaze→action'],
-					['12', 'core gestures'],
-					['3', 'ambient depths']
+					['180KB', 'gzipped bundle'],
+					['38', 'ms p95 query'],
+					['100%', 'typed boundary']
 				]
 			},
-			{ kind: 'image', label: 'Halcyon · ambient panel choreography', aspect: 16 / 9 },
+			{ kind: 'image', label: 'Vela · timeline view', aspect: 16 / 9 },
 			{
 				kind: 'prose',
-				h: 'The choreography problem',
-				body: 'Spatial UIs are a sequencing problem first and a visual problem second. We wrote a small notation for panel behaviour — appear, bloom, settle, retire — and used it to compose every surface in the system. The notation became a Figma plugin and a Rive runtime; the same score plays back in design and in production.'
+				h: 'TypeScript at the seam',
+				body: 'The whole stack speaks TypeScript: schema in Drizzle, RPC in a tiny custom typed router, components in Svelte 5 with strict bindings. A change to the schema fails the build before it fails the runtime — the kind of safety that pays for itself in week two.'
 			},
-			{ kind: 'image', label: 'System notation · panel score in the inspector', aspect: 16 / 10 },
+			{ kind: 'image', label: 'Schema → API → UI · one type graph', aspect: 16 / 10 },
 			{
 				kind: 'prose',
 				h: 'What shipped',
-				body: 'A first-party design tool, an ambient writing surface, and a developer kit. The motion grammar — twelve verbs, three depths, one rhythm — is now the seed for everything the lab builds.'
+				body: 'Beta with seven teams. Average page load under 800ms on a four-year-old laptop. The design system landed as its own package and now seeds two other internal tools.'
 			}
 		]
 	},
 	{
 		n: '02',
 		year: '2025',
-		slug: 'nocturne',
-		title: 'Nocturne',
-		ital: 'Studio',
-		tags: ['Generative', 'WebGPU', 'Creative tech'],
-		desc: 'Real-time generative composition tool: nodes that improvise, render, and self-document. Used by 4,200+ studios worldwide.',
-		client: 'Nocturne Studio',
-		role: 'Design lead · 0→1',
-		duration: '01 / 2023 — 11 / 2024',
-		stack: ['TypeScript', 'WebGPU', 'GLSL', 'Figma'],
+		slug: 'konvo',
+		title: 'Konvo',
+		ital: 'Chat',
+		tags: ['Next.js · NestJS', 'TanStack Query', 'Realtime'],
+		desc: 'A team chat app with threads, presence, and search across years of messages. Next.js + TanStack Query on top, NestJS WebSocket gateway underneath.',
+		client: 'Crest · client product',
+		role: 'Fullstack engineer · 0→1',
+		duration: '02 / 2024 — 10 / 2024',
+		stack: ['Next.js', 'TanStack Query', 'NestJS', 'Socket.IO', 'Postgres', 'Redis'],
 		summary:
-			'Nocturne is a real-time generative composition tool — a node-based canvas where each node improvises, renders, and writes its own documentation as you work. We built it for studios that needed to make a thousand variants, not one.',
+			'Konvo is a Slack-shaped team chat with threads, presence, and ten-thousand-message search. Built for a client who wanted Slack ergonomics without the seat tax. Shipped as a Next.js + TanStack Query frontend talking to a NestJS WebSocket gateway with a Redis-backed pubsub.',
 		featured: true,
-		liveUrl: 'https://example.com/nocturne',
-		repoUrl: 'https://github.com/Moluno/nocturne',
+		liveUrl: 'https://example.com/konvo',
+		repoUrl: 'https://github.com/Moluno/konvo',
 		bodySections: [
 			{
 				kind: 'stat-row',
 				items: [
-					['4,200+', 'studios'],
-					['1.4M', 'renders / month'],
-					['60', 'fps · WebGPU']
+					['12k', 'concurrent sockets'],
+					['80', 'ms search p95'],
+					['99.9%', 'uptime · 6mo']
 				]
 			},
-			{ kind: 'image', label: 'Nocturne · generative node canvas', aspect: 16 / 9 },
+			{ kind: 'image', label: 'Konvo · thread view', aspect: 16 / 9 },
 			{
 				kind: 'prose',
-				h: 'Improvising nodes',
-				body: 'Every node has a temperature. Cold nodes are deterministic; warm nodes drift. The composition is the score, the seed is the conductor, and the render is the take. We spent four months designing the temperature dial alone.'
+				h: 'Live without the lag',
+				body: 'The hardest bit was making "live" feel native on a typed stack. NestJS gateways carry presence and typing, multiplexed over Redis pubsub. Messages themselves flow through tRPC and land in TanStack Query caches on the client — the type contract from server to component never breaks.'
 			},
-			{ kind: 'image', label: 'Temperature dial · UX detail', aspect: 4 / 3 },
+			{ kind: 'image', label: 'Architecture · Next + Node gateway + Redis', aspect: 4 / 3 },
 			{
 				kind: 'prose',
-				h: 'Result',
-				body: 'Shipped on a Tuesday, on the homepage of Awwwards by Thursday. The tool is now in production at studios across four continents.'
+				h: 'Search',
+				body: 'Full-text search across years of messages runs in Postgres with a tsvector and a thin trigram fallback. Eighty-millisecond p95 on the production dataset. No Elasticsearch, no extra infra.'
 			}
 		]
 	},
 	{
 		n: '03',
 		year: '2025',
-		slug: 'meridian',
-		title: 'Meridian',
-		ital: 'Bank',
-		tags: ['Fintech', 'Product design', '0→1'],
-		desc: 'A neobank for cross-border creatives — multi-currency choreography, dispute timelines, and a card stack that handles fifteen jurisdictions.',
-		client: 'Meridian Bank',
-		role: 'Senior product designer',
-		duration: '06 / 2020 — 08 / 2022',
-		stack: ['React Native', 'Figma', 'Lottie'],
+		slug: 'tendo',
+		title: 'Tendo',
+		ital: 'Wallet',
+		tags: ['Flutter · Dart', 'Riverpod', 'Mobile'],
+		desc: 'A personal-finance tracker for cross-border earners. Multi-currency, offline-first, syncs over Supabase when there is signal.',
+		client: 'Self-initiated',
+		role: 'Solo · design + engineering',
+		duration: '08 / 2024 — 04 / 2025',
+		stack: ['Flutter', 'Dart', 'Riverpod', 'Hive', 'Supabase'],
 		summary:
-			'Meridian is a neobank for freelancers and studios who get paid in too many currencies. We rebuilt the multi-currency engine, the dispute timeline, and the card stack from scratch — and shipped a product that crossed €1B in volume in eighteen months.',
+			'Tendo is a personal-finance tracker for people who get paid in three currencies and live in one. Built in Flutter because the brief said "feel native on both stores" — and because I wanted an excuse to push deeper on Dart.',
 		featured: true,
-		liveUrl: 'https://example.com/meridian',
+		liveUrl: 'https://example.com/tendo',
 		bodySections: [
 			{
 				kind: 'stat-row',
 				items: [
-					['€1.4B', 'volume · 18mo'],
-					['15', 'jurisdictions'],
-					['4.9★', 'App Store']
+					['7', 'currencies'],
+					['100%', 'offline first'],
+					['<24MB', 'install · iOS']
 				]
 			},
-			{ kind: 'image', label: 'Meridian · multi-currency dashboard', aspect: 16 / 9 },
+			{ kind: 'image', label: 'Tendo · home & insights', aspect: 4 / 3 },
 			{
 				kind: 'prose',
-				h: 'The dispute timeline',
-				body: 'Disputes are emotional. We designed a timeline that reads like a conversation — every action stamped, every party visible, every status one tap away. Resolution time dropped by 38% in the first quarter.'
+				h: 'Offline-first, conflict-aware',
+				body: 'Every write lands in Hive locally before it hits Supabase. The sync layer is small but careful — last-writer-wins per field, with a per-transaction conflict view for the cases where two devices change the same row in the same minute.'
 			},
-			{ kind: 'image', label: 'Dispute timeline · production screen', aspect: 4 / 3 }
+			{
+				kind: 'prose',
+				h: 'Riverpod patterns',
+				body: 'I wrote the whole app around AsyncNotifierProvider and family. The result is a state graph that mirrors the data graph — you read a feature by reading its providers, and the dependency arrows match the screen hierarchy.'
+			}
 		]
 	},
 	{
 		n: '04',
 		year: '2024',
-		slug: 'pulse',
-		title: 'Pulse',
-		ital: 'Wear',
-		tags: ['Hardware', 'Industrial', 'Watch OS'],
-		desc: 'Biometric wearable focused on sleep architecture. Co-designed the haptic language and the on-wrist visualization grammar with the engineering team.',
-		client: 'Pulse Labs',
-		role: 'Interaction designer · haptics',
-		duration: '03 / 2023 — 05 / 2024',
-		stack: ['SwiftUI', 'C++', 'Rive', 'Figma'],
+		slug: 'lighthouse',
+		title: 'Lighthouse',
+		ital: 'Analytics',
+		tags: ['Next.js · NestJS', 'TanStack Query', 'SaaS'],
+		desc: 'Privacy-first analytics for indie devs. Next.js + TanStack Query dashboard, a tiny tracking script, a NestJS ingest worker, and queries that actually load fast.',
+		client: 'Self-initiated SaaS',
+		role: 'Solo · fullstack',
+		duration: '03 / 2024 — 09 / 2024',
+		stack: ['Next.js', 'TanStack Query', 'NestJS', 'Prisma', 'Postgres'],
 		summary:
-			'Pulse is a biometric wearable that maps sleep architecture — REM, deep, light — and translates it into a vocabulary of haptic textures. I designed the on-wrist UI and authored the haptic language with the firmware team.',
-		liveUrl: 'https://example.com/pulse',
+			'Lighthouse is a privacy-first analytics tool for indie devs and small teams. No cookies, no fingerprinting, no third-party scripts — just a 2KB tracker and a fast dashboard that respects your visitors.',
+		repoUrl: 'https://github.com/Moluno/lighthouse',
 		bodySections: [
 			{
 				kind: 'stat-row',
 				items: [
-					['18', 'haptic textures'],
-					['72h', 'battery'],
-					['0.4°', 'thermal accuracy']
+					['2KB', 'tracker · gzip'],
+					['320', 'ms p95 dashboard'],
+					['0', 'cookies']
 				]
 			},
-			{ kind: 'image', label: 'Pulse · industrial design study', aspect: 4 / 3 },
+			{ kind: 'image', label: 'Lighthouse · realtime view', aspect: 16 / 9 },
 			{
 				kind: 'prose',
-				h: 'Designing for the wrist',
-				body: 'On a 1.5" face you have three jobs at most. We pared the UI down to a glance, a gesture, and a haptic — and let the phone hold the data.'
+				h: 'The ingest path',
+				body: 'A tracker hit lands in a NestJS worker that batches into Postgres on a 200ms drumbeat. Aggregates roll up nightly into materialised views — the dashboard, hydrated with TanStack Query, never queries raw events. It queries answers.'
 			}
 		]
 	},
 	{
 		n: '05',
 		year: '2024',
-		slug: 'atlas',
-		title: 'Atlas',
-		ital: 'Maps',
-		tags: ['Data viz', 'Cartography', 'WebGL'],
-		desc: 'Procedural mapping system: cities rendered live from open data, with a stylized typography pipeline and authored color seasons.',
-		client: 'Atlas Cooperative',
-		role: 'Design + creative engineering',
-		duration: '09 / 2023 — 02 / 2024',
-		stack: ['WebGL', 'Mapbox GL', 'GLSL', 'TypeScript'],
+		slug: 'cresta',
+		title: 'Cresta',
+		ital: 'Notes',
+		tags: ['React Native · Expo', 'TanStack Query', 'Cross-platform'],
+		desc: 'A markdown notes app for phone, tablet, and web. One Expo codebase, three layouts, and a sync layer over Supabase that survived three flights and a tunnel.',
+		client: 'Self-initiated',
+		role: 'Solo',
+		duration: '11 / 2023 — 02 / 2024',
+		stack: ['React Native', 'Expo', 'TanStack Query', 'Supabase', 'MMKV'],
 		summary:
-			'Atlas is a procedural mapping system: every city, drawn live from OpenStreetMap, styled through a typography pipeline I authored. Twelve color seasons, one engine, zero hand-edited tiles.',
-		liveUrl: 'https://example.com/atlas',
-		repoUrl: 'https://github.com/Moluno/atlas',
+			'Cresta is a markdown notes app that lives on three surfaces — phone, tablet, and the web. One Expo Router codebase, three adaptive layouts, and a TanStack Query cache sitting on top of a Supabase sync that survived three flights and a tunnel.',
+		liveUrl: 'https://example.com/cresta',
 		bodySections: [
 			{
 				kind: 'stat-row',
 				items: [
-					['12', 'color seasons'],
-					['∞', 'cities'],
-					['1', 'engine']
+					['3', 'surfaces · one codebase'],
+					['92%', 'shared components'],
+					['1.6s', 'cold start · iOS']
 				]
 			},
-			{ kind: 'image', label: "Atlas · Lisbon in season ‘Cobalt'", aspect: 16 / 9 },
+			{ kind: 'image', label: 'Cresta · note editor', aspect: 4 / 3 },
 			{
 				kind: 'prose',
-				h: 'Type at every zoom',
-				body: 'Most maps lose typography at zoom. Atlas keeps it — labels reflow, hierarchies hold, and the system gracefully retires detail rather than dropping it.'
+				h: 'One codebase, three layouts',
+				body: 'Expo Router carries the navigation. Adaptive layouts ride the same component tree — only the chrome and the breakpoints change. The web target ships from the same source via Expo for Web, and the bundle on mobile sits at under 18MB.'
+			},
+			{
+				kind: 'prose',
+				h: 'TanStack Query on mobile',
+				body: 'TanStack Query handles every server-touching call — paginated lists, optimistic edits, offline replays. MMKV holds the persisted cache. Round-trip latency stopped being a UI problem in week two.'
 			}
 		]
 	},
 	{
 		n: '06',
 		year: '2023',
-		slug: 'quiet',
-		title: 'Quiet',
-		ital: 'Player',
-		tags: ['Audio', 'Identity', 'Motion'],
-		desc: 'A minimalist music player and a small label. Designed the whole stack — wordmark, sleeve system, app, and a generative live visualizer.',
-		client: 'Quiet · self-initiated',
-		role: 'Everything',
-		duration: '2022 — 2023',
-		stack: ['Swift', 'TouchDesigner', 'Figma'],
+		slug: 'inkwell',
+		title: 'Inkwell',
+		ital: 'UI Kit',
+		tags: ['TypeScript', 'Design system', 'Open source'],
+		desc: 'A typed React component library for editorial products — accessible primitives, motion baked in, zero runtime CSS.',
+		client: 'Open source',
+		role: 'Library author',
+		duration: '06 / 2023 — 12 / 2023',
+		stack: ['TypeScript', 'React', 'Stitches', 'Storybook'],
 		summary:
-			'Quiet is a music player and a tiny label. I designed the wordmark, the sleeve system, the player app, and a generative live visualizer that plays at every release party.',
-		repoUrl: 'https://github.com/Moluno/quiet',
+			'Inkwell is a typed React component library for editorial products. Every primitive ships with a default motion, a reduced-motion fallback, and a documented variant API — and the whole thing is tree-shakeable.',
+		repoUrl: 'https://github.com/Moluno/inkwell',
 		bodySections: [
 			{
 				kind: 'stat-row',
 				items: [
-					['09', 'releases'],
-					['3', 'live shows'],
-					['1', 'wordmark']
+					['28', 'primitives'],
+					['~10KB', 'core gzipped'],
+					['800', 'npm dl / week']
 				]
 			},
-			{ kind: 'image', label: 'Quiet · sleeve system', aspect: 1 },
+			{ kind: 'image', label: 'Inkwell · variants gallery', aspect: 16 / 9 },
 			{
 				kind: 'prose',
-				h: 'Designing a label from zero',
-				body: 'An identity that fits on a 7" sleeve, a streaming thumbnail, and a projected wall — all without becoming three different brands.'
+				h: 'A11y by default',
+				body: 'Every primitive is keyboard-navigable and announces correctly without you having to think about it. The popover, menu, and combobox primitives ride on @floating-ui — the rest are hand-rolled and lint-checked against axe in CI.'
 			}
 		]
 	}

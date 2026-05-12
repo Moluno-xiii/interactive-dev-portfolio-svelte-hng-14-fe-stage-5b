@@ -3,42 +3,45 @@ import type { SkillCategory } from '$lib/types';
 export const skills: SkillCategory[] = [
 	{
 		ix: 'S/01',
-		title: 'Design',
+		title: 'Frontend',
 		items: [
-			['Interaction design', 'lead'],
-			['Motion choreography', 'lead'],
-			['Brand & identity', 'ship'],
-			['Typography systems', 'ship']
+			['TypeScript', 'lead'],
+			['React · Next.js', 'lead'],
+			['Svelte · SvelteKit', 'ship'],
+			['TanStack Query · Router', 'ship'],
+			['Tailwind · CSS', 'ship']
 		]
 	},
 	{
 		ix: 'S/02',
-		title: 'Engineering',
+		title: 'Backend & API',
 		items: [
-			['TypeScript / React', 'ship'],
-			['WebGL · GLSL', 'ship'],
-			['Three.js · R3F', 'ship'],
-			['Swift · SwiftUI', 'learn']
+			['Node.js · Express', 'ship'],
+			['NestJS', 'ship'],
+			['tRPC · GraphQL', 'ship'],
+			['PostgreSQL · Prisma', 'ship'],
+			['Redis · Queues', 'fluent']
 		]
 	},
 	{
 		ix: 'S/03',
-		title: 'Tooling',
+		title: 'Mobile',
 		items: [
-			['Figma · variables', 'fluent'],
-			['Rive · Lottie', 'fluent'],
-			['Cinema 4D · Octane', 'ship'],
-			['TouchDesigner', 'ship']
+			['React Native · Expo', 'ship'],
+			['Flutter · Dart', 'ship'],
+			['Riverpod · Bloc', 'ship'],
+			['Supabase · Hive', 'fluent'],
+			['Platform channels', 'learn']
 		]
 	},
 	{
 		ix: 'S/04',
-		title: 'Practice',
+		title: 'Tooling',
 		items: [
-			['Prototyping in code', 'always'],
-			['Workshop facilitation', 'ship'],
-			['Design critique', 'ship'],
-			['Public speaking', 'ship']
+			['Vite · Turborepo', 'ship'],
+			['Docker · GH Actions', 'ship'],
+			['Vercel · Fly · Render', 'fluent'],
+			['Playwright · Vitest', 'ship']
 		]
 	}
 ];

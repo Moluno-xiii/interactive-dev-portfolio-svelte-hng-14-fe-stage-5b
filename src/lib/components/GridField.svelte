@@ -36,8 +36,9 @@
 		const draw = () => {
 			t += 0.006 * density;
 			ctx.clearRect(0, 0, W, H);
-			const accent =
-				getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#e6eefb';
+			const styles = getComputedStyle(document.body);
+			const accent = styles.getPropertyValue('--accent').trim() || '#e6eefb';
+			const particleRgb = styles.getPropertyValue('--particle-rgb').trim() || '168, 176, 189';
 			const step = 42;
 			const cols = Math.ceil(W / step) + 1;
 			const rows = Math.ceil(H / step) + 1;
@@ -54,7 +55,7 @@
 					const useAccent = mouseEffect > 0.4 || (wave > 0.92 && (i * 7 + j) % 13 === 0);
 					ctx.fillStyle = useAccent
 						? accent
-						: `rgba(168, 176, 189, ${0.1 + wave * 0.2 + mouseEffect * 0.4})`;
+						: `rgba(${particleRgb}, ${0.1 + wave * 0.2 + mouseEffect * 0.4})`;
 					ctx.beginPath();
 					ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
 					ctx.fill();

@@ -12,8 +12,8 @@
 			</div>
 			<div use:reveal>
 				<h2 class="m-0 text-display">
-					A designer who codes,<br />
-					<span class="italic">and an engineer</span> who draws.
+					Frontend by trade,<br />
+					<span class="italic">fullstack</span> when it counts.
 				</h2>
 			</div>
 		</div>

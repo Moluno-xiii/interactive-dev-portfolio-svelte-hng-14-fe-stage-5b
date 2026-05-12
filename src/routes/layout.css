@@ -19,6 +19,8 @@
 	--accent-2: #5b76d8;
 	--warn: #ff5d2a;
 
+	--particle-rgb: 90, 90, 96;
+
 	--font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
 	--font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 	--font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
@@ -44,6 +46,8 @@
 	--dim: #353a45;
 	--accent: #e6eefb;
 	--accent-2: #7c9cff;
+
+	--particle-rgb: 168, 176, 189;
 }
 
 [data-palette='lime'] {
@@ -257,7 +261,10 @@
 		text-transform: uppercase;
 		color: var(--fg-soft);
 		pointer-events: none;
-		mix-blend-mode: difference;
+		background: color-mix(in srgb, var(--bg) 72%, transparent);
+		backdrop-filter: saturate(140%) blur(12px);
+		-webkit-backdrop-filter: saturate(140%) blur(12px);
+		border-bottom: 1px solid var(--line);
 	}
 	.hud > * {
 		pointer-events: auto;
@@ -278,6 +285,10 @@
 		text-transform: uppercase;
 		color: var(--muted);
 		pointer-events: none;
+		background: color-mix(in srgb, var(--bg) 72%, transparent);
+		backdrop-filter: saturate(140%) blur(12px);
+		-webkit-backdrop-filter: saturate(140%) blur(12px);
+		border-top: 1px solid var(--line);
 	}
 
 	.bracket {

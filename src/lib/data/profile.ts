@@ -3,55 +3,52 @@ import type { Profile, AboutData } from '$lib/types';
 export const profile: Profile = {
 	name: 'Moluno',
 	handle: '@moluno',
-	title: 'Interaction Designer · Creative Engineer',
-	tagline: 'I build interactive, performant interfaces on the web.',
-	bio: 'I design immersive interfaces and motion systems at the seam between software and storytelling — currently shaping the next generation of spatial tools for a stealth lab.',
+	title: 'Frontend Engineer · Fullstack · Mobile',
+	tagline:
+		'I build TypeScript products end-to-end — web frontends with React, Next.js and SvelteKit, NestJS / Express APIs behind them, and mobile apps in React Native + Expo or Flutter.',
+	bio: 'TypeScript-first engineer. I lean frontend by trade — React, Next.js, Svelte, design systems, motion — and reach into the stack when the work needs it. NestJS and Express on the API side; React Native + Expo and Flutter on mobile.',
 	intro:
-		'I design immersive interfaces and motion systems at the seam between software and storytelling — currently shaping the next generation of spatial tools for a stealth lab.',
+		'TypeScript-first engineer. I lean frontend by trade — React, Next.js, Svelte, design systems, motion — and reach into the stack when the work needs it. NestJS and Express on the API side; React Native + Expo and Flutter on mobile.',
 	location: 'Lagos · GMT+1',
 	timezone: 'WAT · UTC+1',
 	email: 'hello@moluno.dev',
 	resumeUrl: '/resume.pdf',
 	available: true,
 	now: [
-		{ label: 'Building', value: 'Halcyon', meta: 'Spatial workspace shell' },
-		{
-			label: 'Reading',
-			value: 'The Visual Display of Quantitative Information',
-			meta: 'Edward Tufte'
-		},
-		{ label: 'Listening', value: 'All My Heroes Are Cornballs', meta: 'JPEGMAFIA' },
-		{ label: 'Learning', value: 'CRDTs', meta: 'Realtime collab internals' }
+		{ label: 'Building', value: 'Vela', meta: 'SvelteKit + Postgres dashboard' },
+		{ label: 'Shipping', value: 'Cresta', meta: 'Expo + React Native rewrite' },
+		{ label: 'Reading', value: 'Designing Data-Intensive Applications', meta: 'Martin Kleppmann' },
+		{ label: 'Learning', value: 'NestJS internals', meta: 'Modules, DI, decorators' }
 	],
 	socials: [
 		{ platform: 'github', label: 'GitHub', href: 'https://github.com/Moluno' },
-		{ platform: 'dribbble', label: 'Dribbble', href: 'https://dribbble.com/Moluno' },
-		{ platform: 'readcv', label: 'Read.cv', href: 'https://read.cv/Moluno' },
+		{ platform: 'twitter', label: 'X / Twitter', href: 'https://x.com/Moluno' },
 		{ platform: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/Moluno' },
+		{ platform: 'readcv', label: 'Read.cv', href: 'https://read.cv/Moluno' },
 		{ platform: 'email', label: 'Email', href: 'mailto:hello@moluno.dev' }
 	]
 };
 
 export const about: AboutData = {
 	paragraphs: [
-		"I've spent the last eight years designing products that sit at the edge of what feels possible — building interaction primitives for spatial computing, generative tools, and live performance software.",
-		'My work lives in the handoff between concept and craft: prototyping micro-interactions in code, owning the motion vocabulary of a brand, and collaborating closely with engineers to ship the difficult details.',
-		"When I'm not at a screen I'm building modular synths, running a small letterpress, or chasing thunderstorms across the Iberian peninsula."
+		"I've spent the last four years shipping TypeScript products — React and Next.js frontends, NestJS and Express APIs behind them, and the small native pieces that fill the gaps. Most of my work sits in the web, but I'm just as comfortable in a Dockerfile, a SQL migration, or an Expo build pipeline.",
+		"I lean frontend by trade. I care about typography, motion, and the milliseconds between a tap and a frame — and I keep TanStack Query nearby for everything that has to talk to a server. The best frontend work I've shipped has come from designing the system end-to-end and refusing to draw a hard line between client and API.",
+		'On mobile I run two stacks: React Native + Expo when the team is already TypeScript-native, and Flutter when the design wants tighter control of the canvas. Same product brain, different runtime.'
 	],
 	stats: [
-		{ k: 'Years shipping', v: '08', s: 'yrs' },
-		{ k: 'Projects shipped', v: '47', s: '/ public' },
-		{ k: 'Team size lead', v: '12', s: 'ppl' },
-		{ k: 'Awards', v: '06', s: 'FWA · Awwwards' }
+		{ k: 'Years shipping', v: '04', s: 'yrs' },
+		{ k: 'Projects shipped', v: '23', s: '/ public' },
+		{ k: 'Stacks fluent', v: '04', s: 'web · node · rn · flutter' },
+		{ k: 'Coffee · daily', v: '02', s: 'sometimes 03' }
 	]
 };
 
 export const ticker = [
-	'STATUS · AVAILABLE Q3 2026',
+	'STATUS · OPEN TO WORK',
+	'STACK · TS · NEXT · NEST · EXPO · FLUTTER',
 	'LAT 6.5244° N',
 	'LON 3.3792° E',
 	'BUILD 04.11.026',
-	'FRAME 60Hz',
 	'SIGNAL · STRONG'
 ];
 

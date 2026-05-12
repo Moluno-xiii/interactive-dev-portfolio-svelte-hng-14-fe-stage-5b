@@ -13,8 +13,8 @@
 		</div>
 		<div class="r-up" use:reveal style="transition-delay: 80ms;">
 			<h2>
-				Let's make<br />
-				<span class="italic">something strange</span><br />
+				Let's build<br />
+				<span class="italic">something good</span><br />
 				together.
 			</h2>
 		</div>

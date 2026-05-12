@@ -40,19 +40,19 @@
 		</div>
 
 		<h1 id="hero-title" class="m-0 text-hero">
-			<Scramble text="Interfaces" duration={900} delay={150} />
+			<Scramble text="Software" duration={900} delay={150} />
 			<span> </span>
 			<span class="italic"><Scramble text="that" duration={700} delay={500} /></span>
 			<span> </span>
-			<span class="stroke"><Scramble text="move" duration={800} delay={780} /></span>
+			<span class="stroke"><Scramble text="ships" duration={800} delay={780} /></span>
 			<br />
 			<Scramble text="like " duration={500} delay={1080} />
-			<span class="accent-word"><Scramble text="cinema." duration={900} delay={1240} /></span>
+			<span class="accent-word"><Scramble text="clockwork." duration={900} delay={1240} /></span>
 		</h1>
 
 		<p class="intro fade-up {show ? 'show' : ''}" style="transition-delay: 1400ms;">
-			I design <b>immersive interfaces</b> and motion systems at the seam between software and storytelling
-			— currently shaping the next generation of spatial tools for a stealth lab.
+			I build <b>TypeScript products</b> end-to-end — web frontends, the APIs behind them, and Flutter
+			for everything that ships to a phone. Frontend by trade, fullstack when the work needs it.
 		</p>
 
 		<div class="actions fade-up {show ? 'show' : ''}" style="transition-delay: 1600ms;">

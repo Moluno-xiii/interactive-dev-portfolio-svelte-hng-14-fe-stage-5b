@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import { reveal } from '$lib/actions/reveal';
 	import { magnetic } from '$lib/actions/magnetic';
 	import ParticleField from '$lib/components/ParticleField.svelte';
@@ -13,10 +13,17 @@
 
 	let show = $state(false);
 	let railEl: HTMLElement;
-	let raf = 0;
+
+	$effect(() => {
+		const _ = project.slug;
+		void _;
+		show = false;
+		const t = setTimeout(() => (show = true), 60);
+		if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'instant' });
+		return () => clearTimeout(t);
+	});
 
 	onMount(() => {
-		const t = setTimeout(() => (show = true), 60);
 		const onScroll = () => {
 			if (!railEl) return;
 			const h = document.documentElement;
@@ -25,14 +32,7 @@
 		};
 		window.addEventListener('scroll', onScroll, { passive: true });
 		onScroll();
-		return () => {
-			clearTimeout(t);
-			window.removeEventListener('scroll', onScroll);
-		};
-	});
-
-	onDestroy(() => {
-		if (raf) cancelAnimationFrame(raf);
+		return () => window.removeEventListener('scroll', onScroll);
 	});
 </script>
 
@@ -234,6 +234,9 @@
 		z-index: 55;
 		pointer-events: none;
 		mix-blend-mode: difference;
+	}
+	:global([data-theme='light']) .proj-side {
+		mix-blend-mode: normal;
 	}
 	.proj-side.left {
 		left: 18px;

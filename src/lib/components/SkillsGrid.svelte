@@ -12,8 +12,8 @@
 			</div>
 			<div use:reveal>
 				<h2 class="m-0 text-display">
-					Tools, languages,<br />
-					<span class="italic">and disciplines.</span>
+					TypeScript end to end,<br />
+					<span class="italic">Flutter where</span> it matters.
 				</h2>
 			</div>
 		</div>

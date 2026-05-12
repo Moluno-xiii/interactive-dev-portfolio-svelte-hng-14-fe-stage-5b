@@ -61,8 +61,9 @@
 
 		const draw = () => {
 			ctx.clearRect(0, 0, W, H);
-			const accent =
-				getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#e6eefb';
+			const styles = getComputedStyle(document.body);
+			const accent = styles.getPropertyValue('--accent').trim() || '#e6eefb';
+			const particleRgb = styles.getPropertyValue('--particle-rgb').trim() || '168, 176, 189';
 			for (const p of particles) {
 				p.x += p.vx;
 				p.y += p.vy;
@@ -81,7 +82,7 @@
 				p.tw += p.ts;
 				const tw = 0.55 + 0.45 * Math.sin(p.tw);
 				ctx.globalAlpha = (0.32 + p.z * 0.55) * tw;
-				ctx.fillStyle = p.z > 0.86 ? accent : `rgba(168, 176, 189, ${0.4 + p.z * 0.45})`;
+				ctx.fillStyle = p.z > 0.86 ? accent : `rgba(${particleRgb}, ${0.4 + p.z * 0.45})`;
 				ctx.beginPath();
 				ctx.arc(p.x, p.y, p.r * (0.6 + p.z), 0, Math.PI * 2);
 				ctx.fill();
@@ -96,7 +97,7 @@
 					const d2 = dx * dx + dy * dy;
 					if (d2 < 7000) {
 						const o = (1 - d2 / 7000) * 0.22;
-						ctx.strokeStyle = `rgba(168, 176, 189, ${o})`;
+						ctx.strokeStyle = `rgba(${particleRgb}, ${o})`;
 						ctx.lineWidth = 0.5;
 						ctx.beginPath();
 						ctx.moveTo(a.x, a.y);
