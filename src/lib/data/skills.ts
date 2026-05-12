@@ -2,46 +2,43 @@ import type { SkillCategory } from '$lib/types';
 
 export const skills: SkillCategory[] = [
 	{
-		name: 'Languages',
+		ix: 'S/01',
+		title: 'Design',
 		items: [
-			{ label: 'TypeScript' },
-			{ label: 'JavaScript' },
-			{ label: 'Rust' },
-			{ label: 'Go' },
-			{ label: 'Python' },
-			{ label: 'GLSL' }
+			['Interaction design', 'lead'],
+			['Motion choreography', 'lead'],
+			['Brand & identity', 'ship'],
+			['Typography systems', 'ship']
 		]
 	},
 	{
-		name: 'Frameworks',
+		ix: 'S/02',
+		title: 'Engineering',
 		items: [
-			{ label: 'Svelte / SvelteKit' },
-			{ label: 'React / Next.js' },
-			{ label: 'Vue / Nuxt' },
-			{ label: 'Tauri' },
-			{ label: 'Astro' }
+			['TypeScript / React', 'ship'],
+			['WebGL · GLSL', 'ship'],
+			['Three.js · R3F', 'ship'],
+			['Swift · SwiftUI', 'learn']
 		]
 	},
 	{
-		name: 'Craft',
+		ix: 'S/03',
+		title: 'Tooling',
 		items: [
-			{ label: 'Motion design' },
-			{ label: 'WebGL / shaders' },
-			{ label: 'Design systems' },
-			{ label: 'Accessibility' },
-			{ label: 'Performance' },
-			{ label: 'DX tooling' }
+			['Figma · variables', 'fluent'],
+			['Rive · Lottie', 'fluent'],
+			['Cinema 4D · Octane', 'ship'],
+			['TouchDesigner', 'ship']
 		]
 	},
 	{
-		name: 'Platform',
+		ix: 'S/04',
+		title: 'Practice',
 		items: [
-			{ label: 'Vite' },
-			{ label: 'Vercel' },
-			{ label: 'Cloudflare' },
-			{ label: 'PostgreSQL' },
-			{ label: 'Redis' },
-			{ label: 'Docker' }
+			['Prototyping in code', 'always'],
+			['Workshop facilitation', 'ship'],
+			['Design critique', 'ship'],
+			['Public speaking', 'ship']
 		]
 	}
 ];

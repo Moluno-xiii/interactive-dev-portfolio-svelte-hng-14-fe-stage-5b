@@ -1,4 +1,11 @@
-export type SocialPlatform = 'github' | 'linkedin' | 'twitter' | 'email' | 'website';
+export type SocialPlatform =
+	| 'github'
+	| 'linkedin'
+	| 'twitter'
+	| 'email'
+	| 'website'
+	| 'dribbble'
+	| 'readcv';
 
 export interface Social {
 	platform: SocialPlatform;
@@ -14,9 +21,11 @@ export interface NowEntry {
 
 export interface Profile {
 	name: string;
+	handle: string;
 	title: string;
 	tagline: string;
 	bio: string;
+	intro: string;
 	location: string;
 	timezone: string;
 	email: string;
@@ -27,53 +36,52 @@ export interface Profile {
 	socials: Social[];
 }
 
-export interface Highlight {
-	metric: string;
-	label: string;
-	meta?: string;
+export interface AboutStat {
+	k: string;
+	v: string;
+	s: string;
 }
 
-export interface CaseStudySection {
-	num: string;
-	heading: string;
-	body: string;
+export interface AboutData {
+	paragraphs: string[];
+	stats: AboutStat[];
 }
 
-export type ProjectStatus = 'live' | 'archived' | 'sunset' | 'in-progress';
-
-export interface CaseStudy {
-	role: string;
-	duration: string;
-	team: string;
-	status: ProjectStatus;
-	context: string;
-	highlights: Highlight[];
-	sections: CaseStudySection[];
-	outcomes: string[];
-	reflection: string;
-	domain?: string;
-}
+export type BodySection =
+	| { kind: 'stat-row'; items: Array<[string, string]> }
+	| { kind: 'image'; label: string; aspect: number }
+	| { kind: 'prose'; h: string; body: string };
 
 export interface Project {
+	n: string;
+	year: string;
 	slug: string;
 	title: string;
+	ital: string;
+	tags: string[];
+	desc: string;
+	client: string;
+	role: string;
+	duration: string;
+	stack: string[];
 	summary: string;
-	description: string;
-	tech: string[];
-	screenshot: string;
+	bodySections: BodySection[];
 	liveUrl?: string;
 	repoUrl?: string;
 	featured?: boolean;
-	year: number;
-	caseStudy?: CaseStudy;
 }
 
-export interface Skill {
-	label: string;
-	icon?: string;
-}
+export type SkillLevel = 'lead' | 'ship' | 'fluent' | 'learn' | 'always';
 
 export interface SkillCategory {
-	name: string;
-	items: Skill[];
+	ix: string;
+	title: string;
+	items: Array<[string, SkillLevel]>;
+}
+
+export interface ExperienceEntry {
+	yr: string;
+	role: string;
+	co: string;
+	note: string;
 }
