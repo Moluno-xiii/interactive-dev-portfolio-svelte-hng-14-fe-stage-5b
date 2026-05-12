@@ -47,7 +47,7 @@
 		<div class="section-head">
 			<div class="lbl">
 				<span class="dot"></span>
-				<span>§02 · Selected work</span>
+				<span>§02 · Projects</span>
 			</div>
 			<div use:reveal>
 				<h2 class="m-0 text-display">

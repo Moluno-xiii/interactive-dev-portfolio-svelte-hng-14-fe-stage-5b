@@ -5,11 +5,25 @@
 
 	let dotEl = $state<HTMLDivElement | undefined>();
 	let ringEl = $state<HTMLDivElement | undefined>();
+	let coarse = $state(false);
 	let raf = 0;
+
+	const enabled = $derived(theme.cursor && !coarse);
 
 	$effect(() => {
 		if (!browser) return;
-		if (!theme.cursor) {
+		const mq = window.matchMedia('(pointer: coarse)');
+		coarse = mq.matches;
+		const handler = (e: MediaQueryListEvent) => {
+			coarse = e.matches;
+		};
+		mq.addEventListener('change', handler);
+		return () => mq.removeEventListener('change', handler);
+	});
+
+	$effect(() => {
+		if (!browser) return;
+		if (!enabled) {
 			document.body.classList.remove('custom-cursor');
 			return;
 		}
@@ -55,7 +69,7 @@
 	});
 </script>
 
-{#if theme.cursor}
+{#if enabled}
 	<div bind:this={ringEl} class="cursor-ring"></div>
 	<div bind:this={dotEl} class="cursor-dot"></div>
 {/if}

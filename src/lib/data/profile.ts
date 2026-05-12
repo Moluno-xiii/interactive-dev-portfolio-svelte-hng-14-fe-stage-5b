@@ -53,9 +53,9 @@ export const ticker = [
 ];
 
 export const nav = [
-	{ id: 'work', label: 'Work' },
+	{ id: 'work', label: 'Projects' },
 	{ id: 'about', label: 'About' },
 	{ id: 'skills', label: 'Stack' },
-	{ id: 'experience', label: 'Index' },
+	{ id: 'experience', label: 'History' },
 	{ id: 'contact', label: 'Contact' }
 ];

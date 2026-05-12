@@ -8,11 +8,11 @@
 		<div class="section-head">
 			<div class="lbl">
 				<span class="dot"></span>
-				<span>§04 · Index</span>
+				<span>§04 · History</span>
 			</div>
 			<div use:reveal>
 				<h2 class="m-0 text-display">
-					An index of<br />
+					A history of<br />
 					<span class="italic">past collaborations.</span>
 				</h2>
 			</div>

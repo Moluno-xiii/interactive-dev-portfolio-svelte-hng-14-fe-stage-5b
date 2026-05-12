@@ -238,6 +238,17 @@
 	[data-theme='light'] .vignette {
 		background: radial-gradient(120% 80% at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.18) 100%);
 	}
+	@media (max-width: 720px), (pointer: coarse) {
+		.scanlines,
+		.vignette {
+			display: none;
+		}
+		.hud,
+		.hud-bottom {
+			backdrop-filter: blur(6px);
+			-webkit-backdrop-filter: blur(6px);
+		}
+	}
 	.bg-canvas {
 		position: fixed;
 		inset: 0;
