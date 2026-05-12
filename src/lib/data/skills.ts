@@ -2,46 +2,46 @@ import type { SkillCategory } from '$lib/types';
 
 export const skills: SkillCategory[] = [
 	{
-		name: 'Languages',
+		ix: 'S/01',
+		title: 'Frontend',
 		items: [
-			{ label: 'TypeScript' },
-			{ label: 'JavaScript' },
-			{ label: 'Rust' },
-			{ label: 'Go' },
-			{ label: 'Python' },
-			{ label: 'GLSL' }
+			['TypeScript', 'lead'],
+			['React · Next.js', 'lead'],
+			['Svelte · SvelteKit', 'ship'],
+			['TanStack Query · Router', 'ship'],
+			['Tailwind · CSS', 'ship']
 		]
 	},
 	{
-		name: 'Frameworks',
+		ix: 'S/02',
+		title: 'Backend & API',
 		items: [
-			{ label: 'Svelte / SvelteKit' },
-			{ label: 'React / Next.js' },
-			{ label: 'Vue / Nuxt' },
-			{ label: 'Tauri' },
-			{ label: 'Astro' }
+			['Node.js · Express', 'ship'],
+			['NestJS', 'ship'],
+			['tRPC · GraphQL', 'ship'],
+			['PostgreSQL · Prisma', 'ship'],
+			['Redis · Queues', 'fluent']
 		]
 	},
 	{
-		name: 'Craft',
+		ix: 'S/03',
+		title: 'Mobile',
 		items: [
-			{ label: 'Motion design' },
-			{ label: 'WebGL / shaders' },
-			{ label: 'Design systems' },
-			{ label: 'Accessibility' },
-			{ label: 'Performance' },
-			{ label: 'DX tooling' }
+			['React Native · Expo', 'ship'],
+			['Flutter · Dart', 'ship'],
+			['Riverpod · Bloc', 'ship'],
+			['Supabase · Hive', 'fluent'],
+			['Platform channels', 'learn']
 		]
 	},
 	{
-		name: 'Platform',
+		ix: 'S/04',
+		title: 'Tooling',
 		items: [
-			{ label: 'Vite' },
-			{ label: 'Vercel' },
-			{ label: 'Cloudflare' },
-			{ label: 'PostgreSQL' },
-			{ label: 'Redis' },
-			{ label: 'Docker' }
+			['Vite · Turborepo', 'ship'],
+			['Docker · GH Actions', 'ship'],
+			['Vercel · Fly · Render', 'fluent'],
+			['Playwright · Vitest', 'ship']
 		]
 	}
 ];

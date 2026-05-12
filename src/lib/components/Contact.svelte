@@ -1,207 +1,141 @@
 <script lang="ts">
 	import { reveal } from '$lib/actions/reveal';
 	import { profile } from '$lib/data/profile';
-	import SocialLinks from './SocialLinks.svelte';
-
-	let copied = $state(false);
-	let copyTimer: ReturnType<typeof setTimeout> | null = null;
-
-	let name = $state('');
-	let email = $state('');
-	let message = $state('');
-
-	function copyEmail() {
-		navigator.clipboard?.writeText(profile.email).then(() => {
-			copied = true;
-			if (copyTimer) clearTimeout(copyTimer);
-			copyTimer = setTimeout(() => (copied = false), 1800);
-		});
-	}
-
-	function handleSubmit(event: SubmitEvent) {
-		event.preventDefault();
-		const subject = encodeURIComponent(`Hi from ${name || 'a visitor'}`);
-		const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
-		window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-	}
 </script>
 
-<section
-	id="contact"
-	class="section relative border-t border-border"
-	aria-labelledby="contact-title"
->
-	<div class="container-page" use:reveal>
-		<div class="grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:gap-12">
-			<div class="flex flex-col gap-6">
-				<span class="inline-flex items-center gap-2 eyebrow text-accent">
-					<span class="inline-block size-1.5 rounded-full bg-accent" aria-hidden="true"></span>
-					Get in touch
-				</span>
-				<h2 id="contact-title" class="m-0 max-w-[18ch] text-display text-fg">
-					Let's build something good.
-				</h2>
-				<p class="m-0 max-w-[44ch] text-[clamp(1.05rem,1.3vw,1.15rem)] leading-[1.55] text-soft">
-					Open to product work, collaborations, and the occasional bit of mischief. The fastest way
-					to reach me is email — I read everything within 48 hours.
-				</p>
-
-				<div class="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center">
-					<a class="btn btn-primary" href="mailto:{profile.email}">
-						<svg
-							width="14"
-							height="14"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							aria-hidden="true"
-						>
-							<rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" />
-						</svg>
-						Send email
-					</a>
-					<button type="button" onclick={copyEmail} class="btn">
-						{#if copied}
-							<svg
-								width="14"
-								height="14"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2.4"
-								aria-hidden="true"
-							>
-								<path d="M5 12.5 10 17l9-9" />
-							</svg>
-							Copied
-						{:else}
-							<svg
-								width="14"
-								height="14"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="1.7"
-								aria-hidden="true"
-							>
-								<rect x="9" y="9" width="11" height="11" rx="2" /><path
-									d="M5 15V5a2 2 0 0 1 2-2h10"
-								/>
-							</svg>
-							{profile.email}
-						{/if}
-					</button>
-				</div>
-
-				<div class="mt-4 flex flex-col gap-3">
-					<span class="mono text-[0.7rem] tracking-wider text-muted uppercase">Elsewhere</span>
-					<SocialLinks socials={profile.socials} />
-				</div>
+<section id="contact" class="contact">
+	<div class="block-inner">
+		<div class="r-up" use:reveal>
+			<div class="eyebrow">
+				<span class="dot"></span>
+				<span>§05 · Outbound</span>
 			</div>
-
-			<form
-				class="relative flex flex-col gap-4 rounded-2xl border border-border bg-surface p-5"
-				onsubmit={handleSubmit}
-				novalidate
-			>
-				<div class="flex flex-col gap-1.5">
-					<label class="mono text-[0.65rem] tracking-wider text-muted uppercase" for="contact-name"
-						>Name</label
-					>
-					<input
-						id="contact-name"
-						class="field"
-						type="text"
-						required
-						autocomplete="name"
-						bind:value={name}
-						placeholder="Ada Lovelace"
-					/>
-				</div>
-				<div class="flex flex-col gap-1.5">
-					<label class="mono text-[0.65rem] tracking-wider text-muted uppercase" for="contact-email"
-						>Email</label
-					>
-					<input
-						id="contact-email"
-						class="field"
-						type="email"
-						required
-						autocomplete="email"
-						bind:value={email}
-						placeholder="ada@analytical.dev"
-					/>
-				</div>
-				<div class="flex flex-col gap-1.5">
-					<label
-						class="mono text-[0.65rem] tracking-wider text-muted uppercase"
-						for="contact-message">Message</label
-					>
-					<textarea
-						id="contact-message"
-						class="field field-area"
-						required
-						rows="5"
-						bind:value={message}
-						placeholder="What's on your mind?"
-					></textarea>
-				</div>
-				<button type="submit" class="btn btn-primary self-start">
-					Send message
-					<svg
-						width="14"
-						height="14"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						aria-hidden="true"
-					>
-						<path d="m22 2-7 20-4-9-9-4z" /><path d="M22 2 11 13" />
-					</svg>
-				</button>
-				<p class="m-0 mt-1 text-[0.78rem] text-muted">
-					Opens your mail client. Server-side delivery in Phase 3.
-				</p>
-			</form>
+		</div>
+		<div class="r-up" use:reveal style="transition-delay: 80ms;">
+			<h2>
+				Let's build<br />
+				<span class="italic">something good</span><br />
+				together.
+			</h2>
+		</div>
+		<div class="r-up" use:reveal style="transition-delay: 160ms;">
+			<a href="mailto:{profile.email}" class="mailto">
+				<span>{profile.email}</span>
+				<span>↗</span>
+			</a>
+		</div>
+		<div class="links">
+			{#each profile.socials as s, i (s.label)}
+				<a
+					href={s.href}
+					class="social r-up"
+					target={s.platform === 'email' ? '_self' : '_blank'}
+					rel={s.platform === 'email' ? undefined : 'noopener noreferrer'}
+					style="transition-delay: {240 + i * 60}ms;"
+					use:reveal
+				>
+					<span class="dot"></span>
+					<span>{s.label}</span>
+				</a>
+			{/each}
 		</div>
 	</div>
+	<footer class="foot mono">
+		<div>© {new Date().getFullYear()} · {profile.name} · Crafted in Lagos</div>
+		<div>v2.04.026 · 60Hz · 6.5244 N · 3.3792 E</div>
+	</footer>
 </section>
 
 <style>
-	.field {
-		font: inherit;
-		font-family: var(--font-body);
-		color: var(--text);
-		background: var(--bg);
-		border: 1px solid var(--border);
-		border-radius: 10px;
-		padding: 0.7rem 0.85rem;
-		min-height: 42px;
-		font-size: 0.95rem;
+	.contact {
+		position: relative;
+		padding: 160px var(--pad-x) 200px;
+		border-top: 1px solid var(--line);
+		text-align: center;
+		overflow: hidden;
+	}
+	.block-inner {
+		max-width: var(--container-max);
+		margin: 0 auto;
+	}
+	.eyebrow {
+		display: inline-flex;
+		gap: 10px;
+		align-items: center;
+		margin-bottom: 24px;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--fg-soft);
+	}
+	.eyebrow .dot {
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--accent);
+		box-shadow: 0 0 12px var(--accent);
+	}
+	h2 {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: clamp(48px, 10vw, 160px);
+		line-height: 0.95;
+		letter-spacing: -0.04em;
+		margin: 0 auto;
+		max-width: 14ch;
+	}
+	h2 .italic {
+		font-family: var(--font-serif);
+		font-style: italic;
+		font-weight: 400;
+		color: var(--fg-soft);
+	}
+	.mailto {
+		display: inline-flex;
+		align-items: center;
+		gap: 14px;
+		margin-top: 36px;
+		font-family: var(--font-mono);
+		font-size: 13px;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--fg);
+		border-bottom: 1px solid var(--line-strong);
+		padding-bottom: 6px;
 		transition:
-			border-color 200ms ease,
-			background-color 200ms ease;
+			color 0.25s,
+			border-color 0.25s;
 	}
-
-	.field-area {
-		min-height: 130px;
-		resize: vertical;
-		line-height: 1.5;
-	}
-
-	.field::placeholder {
-		color: var(--muted);
-	}
-
-	.field:hover {
-		border-color: var(--border-strong);
-	}
-
-	.field:focus {
-		outline: none;
+	.mailto:hover {
+		color: var(--accent);
 		border-color: var(--accent);
-		background: var(--surface);
+	}
+	.links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		justify-content: center;
+		margin-top: 40px;
+	}
+	.foot {
+		padding: 28px var(--pad-x);
+		border-top: 1px solid var(--line);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 10px;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--muted);
+		flex-wrap: wrap;
+		gap: 14px;
+		margin-top: 80px;
+	}
+	@media (max-width: 980px) {
+		.contact {
+			padding: 120px var(--pad-x) 160px;
+		}
 	}
 </style>

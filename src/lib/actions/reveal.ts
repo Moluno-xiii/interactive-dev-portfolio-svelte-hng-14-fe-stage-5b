@@ -9,22 +9,28 @@ interface RevealOptions {
 
 export const reveal: Action<HTMLElement, RevealOptions | undefined> = (node, options = {}) => {
 	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const show = () => {
+		node.classList.add('in', 'is-visible', 'show');
+	};
+	const hide = () => {
+		node.classList.remove('in', 'is-visible', 'show');
+	};
+
 	if (reduced) {
-		node.classList.add('reveal', 'is-visible');
+		show();
 		return {};
 	}
 
-	node.classList.add('reveal');
 	if (options.delay) node.style.setProperty('--reveal-delay', `${options.delay}ms`);
 
 	const observer = new IntersectionObserver(
 		(entries) => {
 			for (const entry of entries) {
 				if (entry.isIntersecting) {
-					node.classList.add('is-visible');
+					show();
 					if (options.once !== false) observer.unobserve(node);
 				} else if (options.once === false) {
-					node.classList.remove('is-visible');
+					hide();
 				}
 			}
 		},
