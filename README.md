@@ -1,12 +1,11 @@
 # Interactive Developer Portfolio
 
-A SvelteKit + Svelte 5 portfolio for **Moluno Progress** — Frontend & Mobile Engineer.
+My interactive developer portfolio.
 
-Built for the HNG Internship 14 Stage 5b brief: not a static "about me" page, but an experience that showcases the work, the motion, and the engineering judgment behind it.
+Built for the HNG Internship 14 Stage 5b Frontend task.
 
 **Stack** · SvelteKit 2 · Svelte 5 (runes) · TypeScript · Tailwind CSS v4 · pnpm
-**Live URL** · _to be added on deploy_
-**Hosting** · _to be added on deploy_
+**Live URL** · https://escanor-portfolio.vercel.app/
 
 ---
 
@@ -85,7 +84,7 @@ No third-party state library. Runes are the state library.
 
 ## Animation decisions
 
-The animation system is **layered**, not centralised — each piece does one thing well and stays out of the others' way.
+The animation system is **layered**, not centralised, each piece does one thing well and stays out of the others' way.
 
 ### Zero animation libraries
 
@@ -182,8 +181,6 @@ Compiled through `@tailwindcss/vite`. Only classes used in source survive the bu
 
 ## Creative feature — drag-to-reorder
 
-The brief required at least one advanced creative feature. This portfolio picks **draggable UI** — every project row on the home page can be dragged to reorder.
-
 - HTML5 DnD captures the gesture.
 - `animate:flip` runs the reflow animation on the compositor.
 - The order persists to `localStorage` and survives a refresh.
@@ -234,7 +231,7 @@ Three roles in `src/lib/data/experience.ts`:
 
 ## Credits
 
-Designed and built by **Moluno Progress** for the HNG Internship 14 Stage 5b frontend brief.
+Designed and built by **Yours truly** for the HNG Internship 14 Stage 5b frontend task.
 
 - GitHub — [moluno-xiii](https://github.com/moluno-xiii)
 - LinkedIn — [progress-moluno](https://www.linkedin.com/in/progress-moluno)
