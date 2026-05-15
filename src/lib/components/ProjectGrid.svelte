@@ -3,9 +3,73 @@
 	import { cubicOut } from 'svelte/easing';
 	import { reveal } from '$lib/actions/reveal';
 	import { projectOrder } from '$lib/stores/projectOrder.svelte';
+	import type { ProjectTrack } from '$lib/types';
+
+	type Filter = ProjectTrack | 'all';
 
 	let draggingIndex = $state<number | null>(null);
 	let overIndex = $state<number | null>(null);
+
+	const COLLAPSED_COUNT = 6;
+	let expanded = $state(false);
+	let activeFilter = $state<Filter>('all');
+
+	const filtered = $derived(
+		activeFilter === 'all'
+			? projectOrder.items
+			: projectOrder.items.filter((p) => p.tracks.includes(activeFilter as ProjectTrack))
+	);
+
+	const filters: Array<{ id: Filter; label: string; count: number }> = $derived([
+		{ id: 'all', label: 'All', count: projectOrder.items.length },
+		{
+			id: 'frontend',
+			label: 'Frontend',
+			count: projectOrder.items.filter((p) => p.tracks.includes('frontend')).length
+		},
+		{
+			id: 'backend',
+			label: 'Backend',
+			count: projectOrder.items.filter((p) => p.tracks.includes('backend')).length
+		},
+		{
+			id: 'mobile',
+			label: 'Mobile',
+			count: projectOrder.items.filter((p) => p.tracks.includes('mobile')).length
+		}
+	]);
+
+	const dragEnabled = $derived(activeFilter === 'all');
+
+	function toRoman(num: number): string {
+		const map: Array<[number, string]> = [
+			[1000, 'M'],
+			[900, 'CM'],
+			[500, 'D'],
+			[400, 'CD'],
+			[100, 'C'],
+			[90, 'XC'],
+			[50, 'L'],
+			[40, 'XL'],
+			[10, 'X'],
+			[9, 'IX'],
+			[5, 'V'],
+			[4, 'IV'],
+			[1, 'I']
+		];
+		let result = '';
+		let n = num;
+		for (const [value, symbol] of map) {
+			while (n >= value) {
+				result += symbol;
+				n -= value;
+			}
+		}
+		return result;
+	}
+
+	const visible = $derived(expanded ? filtered : filtered.slice(0, COLLAPSED_COUNT));
+	const hiddenCount = $derived(Math.max(0, filtered.length - COLLAPSED_COUNT));
 
 	const transparentDragImg =
 		'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>';
@@ -57,15 +121,44 @@
 			</div>
 		</div>
 
-		<div class="drag-cta">
-			<span class="mono">
-				<span class="mr-2 inline-block size-1.5 rounded-full bg-accent align-middle"></span>
-				Drag rows to reorder · saved locally
-			</span>
-			{#if projectOrder.customised}
-				<button onclick={() => projectOrder.reset()} class="reset-btn mono"> ↺ Reset order </button>
-			{/if}
+		<div class="filter-bar" role="tablist" aria-label="Filter projects by track">
+			{#each filters as f (f.id)}
+				<button
+					type="button"
+					role="tab"
+					aria-selected={activeFilter === f.id}
+					class="filter-pill mono"
+					class:active={activeFilter === f.id}
+					disabled={f.count === 0}
+					onclick={() => (activeFilter = f.id)}
+				>
+					<span>{f.label}</span>
+					<span class="filter-count">{f.count}</span>
+				</button>
+			{/each}
 		</div>
+
+		{#if dragEnabled}
+			<div class="drag-cta">
+				<span class="mono">
+					<span class="mr-2 inline-block size-1.5 rounded-full bg-accent align-middle"></span>
+					Drag rows to reorder · saved locally
+				</span>
+				{#if projectOrder.customised}
+					<button onclick={() => projectOrder.reset()} class="reset-btn mono">
+						↺ Reset order
+					</button>
+				{/if}
+			</div>
+		{:else}
+			<div class="drag-cta">
+				<span class="filter-hint mono">
+					<span class="mr-2 inline-block size-1.5 rounded-full bg-muted align-middle"></span>
+					Showing {filtered.length}
+					{filtered.length === 1 ? 'project' : 'projects'} · drag disabled while filtering
+				</span>
+			</div>
+		{/if}
 
 		<div
 			class="projects"
@@ -74,22 +167,23 @@
 			role="list"
 			aria-label="Project rows — drag to reorder"
 		>
-			{#each projectOrder.items as p, i (p.slug)}
+			{#each visible as p, i (p.slug)}
 				<div
 					class="project group r-up"
 					class:is-dragging={draggingIndex === i}
 					class:is-target={overIndex === i && draggingIndex !== null && draggingIndex !== i}
+					class:no-drag={!dragEnabled}
 					role="listitem"
-					draggable="true"
+					draggable={dragEnabled}
 					style="transition-delay: {i * 60}ms;"
 					use:reveal
-					ondragstart={(e) => onDragStart(e, i)}
-					ondragover={(e) => onDragOver(e, i)}
+					ondragstart={(e) => dragEnabled && onDragStart(e, i)}
+					ondragover={(e) => dragEnabled && onDragOver(e, i)}
 					ondragend={onDragEnd}
 					animate:flip={{ duration: 320, easing: cubicOut }}
 				>
 					<a href="/projects/{p.slug}" class="row-link" draggable={false}>
-						<div class="num mono">{p.n} / {p.year}</div>
+						<div class="num mono">{toRoman(i + 1)}</div>
 						<div>
 							<div class="ttl">{p.title} <em>{p.ital}</em></div>
 							<div class="tags">
@@ -101,7 +195,11 @@
 						<div class="desc">{p.desc}</div>
 						<div class="arrow">↗</div>
 						<div class="preview" aria-hidden="true">
-							<div class="ph"></div>
+							{#if p.coverUrl}
+								<img class="preview-img" src={p.coverUrl} alt="" loading="lazy" />
+							{:else}
+								<div class="ph"></div>
+							{/if}
 							<div class="corners">
 								<i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i>
 							</div>
@@ -121,6 +219,23 @@
 				</div>
 			{/each}
 		</div>
+
+		{#if hiddenCount > 0}
+			<div class="see-more">
+				<button
+					class="see-more-btn mono"
+					onclick={() => (expanded = !expanded)}
+					aria-expanded={expanded}
+				>
+					<span class="see-more-arrow" class:open={expanded}>↓</span>
+					{#if expanded}
+						<span>Show fewer projects</span>
+					{:else}
+						<span>Show {hiddenCount} more {hiddenCount === 1 ? 'project' : 'projects'}</span>
+					{/if}
+				</button>
+			</div>
+		{/if}
 	</div>
 </section>
 
@@ -165,6 +280,53 @@
 		font-weight: 400;
 		color: var(--fg-soft);
 	}
+	.filter-bar {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 18px;
+	}
+	.filter-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 16px;
+		border: 1px solid var(--line-strong);
+		border-radius: 999px;
+		background: transparent;
+		color: var(--fg-soft);
+		font-size: 10px;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition:
+			color 0.25s,
+			background 0.25s,
+			border-color 0.25s,
+			transform 0.25s var(--ease-out);
+	}
+	.filter-pill:hover:not(:disabled):not(.active) {
+		color: var(--fg);
+		border-color: var(--fg-soft);
+	}
+	.filter-pill.active {
+		background: var(--accent);
+		color: var(--bg);
+		border-color: var(--accent);
+	}
+	.filter-pill:disabled {
+		opacity: 0.35;
+		cursor: not-allowed;
+	}
+	.filter-count {
+		font-size: 9px;
+		opacity: 0.7;
+		padding-left: 4px;
+		border-left: 1px solid currentColor;
+	}
+	.filter-pill.active .filter-count {
+		opacity: 0.85;
+	}
 	.drag-cta {
 		display: flex;
 		align-items: center;
@@ -174,6 +336,15 @@
 		letter-spacing: 0.18em;
 		text-transform: uppercase;
 		color: var(--muted);
+	}
+	.filter-hint {
+		color: var(--fg-soft);
+	}
+	.project.no-drag {
+		cursor: default;
+	}
+	.project.no-drag .grip {
+		display: none;
 	}
 	.reset-btn {
 		font-size: 10px;
@@ -188,6 +359,43 @@
 	.projects {
 		display: flex;
 		flex-direction: column;
+	}
+	.see-more {
+		display: flex;
+		justify-content: center;
+		margin-top: 40px;
+	}
+	.see-more-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		padding: 14px 28px;
+		border: 1px solid var(--line-strong);
+		border-radius: 999px;
+		background: transparent;
+		color: var(--fg);
+		font-size: 11px;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition:
+			color 0.25s,
+			border-color 0.25s,
+			background 0.25s,
+			transform 0.25s var(--ease-out);
+	}
+	.see-more-btn:hover {
+		color: var(--bg);
+		background: var(--accent);
+		border-color: var(--accent);
+		transform: translateY(-1px);
+	}
+	.see-more-arrow {
+		display: inline-block;
+		transition: transform 0.3s var(--ease-out);
+	}
+	.see-more-arrow.open {
+		transform: rotate(180deg);
 	}
 	.project {
 		position: relative;
@@ -313,6 +521,15 @@
 		background-image:
 			repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 8px, transparent 8px 16px),
 			linear-gradient(135deg, var(--surface), var(--surface-2));
+	}
+	.preview .preview-img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top center;
+		display: block;
 	}
 	.preview .ph-label {
 		position: absolute;

@@ -11,21 +11,24 @@ export const profile: Profile = {
 		'TypeScript-first engineer. I lean frontend by trade — React, Next.js, Svelte, design systems, motion — and reach into the stack when the work needs it. NestJS and Express on the API side; React Native + Expo and Flutter on mobile.',
 	location: 'Lagos · GMT+1',
 	timezone: 'WAT · UTC+1',
-	email: 'hello@moluno.dev',
+	email: 'molunoprogress@gmail.com',
 	resumeUrl: '/resume.pdf',
 	available: true,
 	now: [
-		{ label: 'Building', value: 'Vela', meta: 'SvelteKit + Postgres dashboard' },
-		{ label: 'Shipping', value: 'Cresta', meta: 'Expo + React Native rewrite' },
-		{ label: 'Reading', value: 'Designing Data-Intensive Applications', meta: 'Martin Kleppmann' },
-		{ label: 'Learning', value: 'NestJS internals', meta: 'Modules, DI, decorators' }
+		{ label: 'Leading', value: 'Storytime4Kids', meta: 'RN + Expo · Play Store + Next.js site' },
+		{ label: 'Maintaining', value: 'The Bull Squad Travels', meta: 'Next.js · CWV + SEO' },
+		{ label: 'Shipping', value: 'HNG 14 portfolio', meta: 'SvelteKit + Svelte 5 · this site' },
+		{ label: 'Practising', value: 'Flutter', meta: 'for selected mobile features' }
 	],
 	socials: [
-		{ platform: 'github', label: 'GitHub', href: 'https://github.com/Moluno' },
-		{ platform: 'twitter', label: 'X / Twitter', href: 'https://x.com/Moluno' },
-		{ platform: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/Moluno' },
-		{ platform: 'readcv', label: 'Read.cv', href: 'https://read.cv/Moluno' },
-		{ platform: 'email', label: 'Email', href: 'mailto:hello@moluno.dev' }
+		{ platform: 'github', label: 'GitHub', href: 'https://github.com/moluno-xiii' },
+		{ platform: 'twitter', label: 'X / Twitter', href: 'https://x.com/moluno_cp' },
+		{
+			platform: 'linkedin',
+			label: 'LinkedIn',
+			href: 'https://www.linkedin.com/in/progress-moluno'
+		},
+		{ platform: 'email', label: 'Email', href: 'mailto:molunoprogress@gmail.com' }
 	]
 };
 
