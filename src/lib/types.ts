@@ -49,8 +49,10 @@ export interface AboutData {
 
 export type BodySection =
 	| { kind: 'stat-row'; items: Array<[string, string]> }
-	| { kind: 'image'; label: string; aspect: number }
+	| { kind: 'image'; label: string; aspect: number; src?: string }
 	| { kind: 'prose'; h: string; body: string };
+
+export type ProjectTrack = 'frontend' | 'backend' | 'mobile';
 
 export interface Project {
 	n: string;
@@ -59,6 +61,7 @@ export interface Project {
 	title: string;
 	ital: string;
 	tags: string[];
+	tracks: ProjectTrack[];
 	desc: string;
 	client: string;
 	role: string;
@@ -66,6 +69,7 @@ export interface Project {
 	stack: string[];
 	summary: string;
 	bodySections: BodySection[];
+	coverUrl?: string;
 	liveUrl?: string;
 	repoUrl?: string;
 	featured?: boolean;

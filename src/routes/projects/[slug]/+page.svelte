@@ -5,6 +5,7 @@
 	import ParticleField from '$lib/components/ParticleField.svelte';
 	import Scramble from '$lib/components/Scramble.svelte';
 	import { getAdjacentProjects, projects } from '$lib/data/projects';
+	import { profile } from '$lib/data/profile';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -92,6 +93,35 @@
 				{project.summary}
 			</p>
 
+			{#if project.liveUrl || project.repoUrl}
+				<div class="proj-links fade-up {show ? 'show' : ''}" style="transition-delay: 1000ms;">
+					{#if project.liveUrl}
+						<a
+							class="proj-link primary"
+							href={project.liveUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							use:magnetic={0.18}
+						>
+							<span class="lbl">Visit live</span>
+							<span class="arr">↗</span>
+						</a>
+					{/if}
+					{#if project.repoUrl}
+						<a
+							class="proj-link ghost"
+							href={project.repoUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							use:magnetic={0.18}
+						>
+							<span class="lbl">View source</span>
+							<span class="arr">↗</span>
+						</a>
+					{/if}
+				</div>
+			{/if}
+
 			<div class="proj-key fade-up {show ? 'show' : ''}" style="transition-delay: 1100ms;">
 				<div class="cell">
 					<div class="k mono">Client</div>
@@ -113,8 +143,12 @@
 		</div>
 	</section>
 
-	<div class="proj-banner">
-		<div class="ph"></div>
+	<div class="proj-banner" class:has-image={!!project.coverUrl}>
+		{#if project.coverUrl}
+			<img class="cover" src={project.coverUrl} alt="{project.title} — cover" loading="eager" />
+		{:else}
+			<div class="ph"></div>
+		{/if}
 		<div class="corners"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i></div>
 		<div class="label mono">
 			<span class="accent">●</span>
@@ -139,8 +173,16 @@
 					</div>
 				{:else if section.kind === 'image'}
 					<div class="r-up" use:reveal>
-						<div class="proj-figure" style="aspect-ratio: {section.aspect};">
-							<div class="ph"></div>
+						<div
+							class="proj-figure"
+							class:has-image={!!section.src}
+							style="aspect-ratio: {section.aspect};"
+						>
+							{#if section.src}
+								<img src={section.src} alt={section.label} loading="lazy" />
+							{:else}
+								<div class="ph"></div>
+							{/if}
 							<div class="corners">
 								<i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i>
 							</div>
@@ -188,7 +230,7 @@
 			<span class="italic">Let's talk.</span>
 		</h2>
 		<div class="actions">
-			<a href="mailto:hello@moluno.dev" class="btn primary" use:magnetic={0.18}>
+			<a href="mailto:{profile.email}" class="btn primary" use:magnetic={0.18}>
 				<i class="tick tl"></i><i class="tick br"></i>
 				<span class="lbl"><span>Start a project</span><span>Start a project</span></span>
 				<span class="arr"><i>↗</i><i>↗</i></span>
@@ -400,6 +442,55 @@
 		color: var(--fg);
 		text-wrap: pretty;
 	}
+	.proj-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 8px;
+	}
+	.proj-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		padding: 12px 22px;
+		border-radius: 999px;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		transition:
+			color 0.25s,
+			background 0.25s,
+			border-color 0.25s,
+			transform 0.25s var(--ease-out);
+	}
+	.proj-link .arr {
+		transition: transform 0.3s var(--ease-out);
+	}
+	.proj-link:hover {
+		transform: translateY(-1px);
+	}
+	.proj-link:hover .arr {
+		transform: translate(2px, -2px);
+	}
+	.proj-link.primary {
+		background: var(--accent);
+		color: var(--bg);
+		border: 1px solid var(--accent);
+	}
+	.proj-link.primary:hover {
+		background: transparent;
+		color: var(--accent);
+	}
+	.proj-link.ghost {
+		border: 1px solid var(--line-strong);
+		color: var(--fg);
+		background: transparent;
+	}
+	.proj-link.ghost:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
 	.proj-key {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -451,6 +542,26 @@
 		background-image:
 			repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 14px, transparent 14px 28px),
 			linear-gradient(135deg, var(--surface), var(--surface-2));
+	}
+	.proj-banner .cover {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top center;
+		display: block;
+	}
+	.proj-banner.has-image::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			180deg,
+			transparent 60%,
+			color-mix(in srgb, var(--bg) 60%, transparent)
+		);
+		pointer-events: none;
 	}
 	.proj-banner .corners i {
 		position: absolute;
@@ -597,6 +708,15 @@
 		background-image:
 			repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 12px, transparent 12px 24px),
 			linear-gradient(135deg, var(--surface), var(--surface-2));
+	}
+	.proj-figure img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top center;
+		display: block;
 	}
 	.proj-figure .label {
 		position: absolute;
